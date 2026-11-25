@@ -6,8 +6,11 @@ name: CI
 on:
   push:
     branches: [ main ]
+    # A push that only changes the readme or the directory assets is checked by the readme-assets workflow instead.
     paths-ignore:
       - '**/*.md'
+      - 'readme.txt'
+      - '.wordpress-org/**'
   pull_request:
     types: [ opened, synchronize, reopened, labeled ]
     paths-ignore:
