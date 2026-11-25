@@ -281,6 +281,10 @@ Routes registered with the old controllers are no longer cached automatically: e
 
 Deleting the plugin from the Plugins screen removes, on every site of the network: the `rfrac_entries` and `rfrac_tags` tables, every option and transient whose name starts with `rfrac_`, the network options, user meta whose key starts with `rfrac_` or with the site's table prefix followed by `rfrac_`, the maintenance cron events, the `rfrac` object-cache group (when the object cache supports flushing a group) and the must-use file `rfrac-early-cache.php`. Deactivating flushes the cache of the site, unschedules its maintenance cron events and removes the must-use file (unless the plugin is still active on another site of the network); the tables and settings stay.
 
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the Rockfire – REST API Cache plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/3b6565d9-6316-455d-8034-ac732df8b164). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
 == Screenshots ==
 
 1. Caches: the cached REST API responses with their method, route, state, size, hits and expiry, ready to flush or delete.

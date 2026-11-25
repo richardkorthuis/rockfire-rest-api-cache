@@ -1,0 +1,79 @@
+name: Update readme and assets
+
+# A push to main that changes readme.txt or .wordpress-org/ updates the readme in SVN trunk and in the stable tag, and
+# the assets (banners, icons, screenshots), without a release. Code is never deployed from here.
+#
+# Skipped while a release is pending: when the readme's Stable tag is not the version live on WordPress.org, the next
+# tag deploys the readme with the code (see deploy.yml). Uses the `wordpress-org` environment, like deploy.yml.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'readme.txt'
+      - '.wordpress-org/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Shared with deploy.yml: never two SVN commits at once.
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check the readme
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    outputs:
+      live: ${{ steps.version.outputs.live }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          tools: none
+
+      - name: Check the readme
+        run: php bin/check-readme.php
+
+      - name: Compare the Stable tag with the live version
+        id: version
+        run: |
+          stable="$(sed -nE 's/^Stable tag:[[:space:]]+([^[:space:]]+).*/\1/p' readme.txt)"
+          live="$(curl -fsS 'https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&slug=rockfire-rest-api-cache' \
+            | python3 -c 'import json, sys; print(json.load(sys.stdin)["version"])')"
+          echo "Stable tag $stable, live on WordPress.org $live"
+          if [ "$stable" = "$live" ]; then
+            echo 'live=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'live=false' >> "$GITHUB_OUTPUT"
+            echo "::notice::Stable tag $stable is not live yet ($live is): the next release deploys this readme."
+          fi
+
+  update:
+    name: Update WordPress.org
+    needs: check
+    if: needs.check.outputs.live == 'true'
+    runs-on: ubuntu-latest
+    environment: wordpress-org
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Update readme and assets
+        # 10up/action-wordpress-plugin-asset-update 2.2.0
+        uses: 10up/action-wordpress-plugin-asset-update@2480306f6f693672726d08b5917ea114cb2825f7
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: rockfire-rest-api-cache
+          ASSETS_DIR: .wordpress-org
+          README_NAME: readme.txt
+          # Copy only readme.txt to trunk; the code in trunk changes only through a release.
+          IGNORE_OTHER_FILES: true
