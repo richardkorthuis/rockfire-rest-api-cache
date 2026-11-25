@@ -14,6 +14,8 @@ Fast, security-hardened caching for the WordPress REST API, with tag-based inval
 
 Rockfire – REST API Cache stores the JSON responses of the WordPress REST API and serves repeated anonymous `GET` requests from the cache, before most of WordPress has loaded. Cached responses are flushed when the content they contain changes, so headless front ends, apps and decoupled sites get fast responses without stale data.
 
+The full documentation, with a getting-started guide, every hook and the migration from WP REST Cache, is at [rockfire.nl/docs](https://rockfire.nl/docs/).
+
 **Features**
 
 * **Early serving.** A small must-use file serves cache hits before regular plugins and the theme load. Without it the plugin still works in fallback mode and serves hits from `plugins_loaded`.
@@ -26,6 +28,13 @@ Rockfire – REST API Cache stores the JSON responses of the WordPress REST API 
 * **Multisite.** Per-site tables and settings, network activation, automatic setup of new sites and `--network` options in WP-CLI.
 * **WooCommerce.** With WooCommerce active, the public Store API catalog (products, categories, brands, tags, attributes and reviews) can be cached once you enable it under REST API Cache → Routes. The cart, checkout, orders and every logged-in shopper are never cached.
 * **Admin screens and Site Health.** Browse and flush cached responses, manage routes and settings, check the must-use file and run maintenance from the REST API Cache menu; Site Health reports problems.
+
+**Documentation**
+
+* [Getting started](https://rockfire.nl/docs/) – requirements, installation and checking that responses are cached.
+* [Hooks reference](https://rockfire.nl/docs/hooks/) – every action and filter, with its parameters and examples.
+* [Switching from WP REST Cache](https://rockfire.nl/docs/migration/) – the import, the notices and the report explained.
+* [FAQ](https://rockfire.nl/docs/faq/) – including why an endpoint is not cached.
 
 **What is never cached**
 
@@ -76,6 +85,7 @@ The plugin does not track users, does not send data to external services and mak
 3. If the must-use file is missing or outdated, a notice on the Plugins screen and on the plugin's pages offers an "Install must-use file" button. Open REST API Cache → Tools to check that the file is installed and serving early; if it cannot be written, follow the manual install instructions shown there.
 4. Review REST API Cache → Routes: the `wp/v2` routes and the oEmbed route are cached by default; enable the routes of other plugins you want to cache.
 5. Optionally adjust REST API Cache → Settings (default and maximum TTL, entry limit, payload size, store).
+6. [Check that responses are cached](https://rockfire.nl/docs/#check).
 
 Do not run this plugin together with WP REST Cache: deactivate WP REST Cache first.
 
@@ -136,6 +146,8 @@ A cacheable request whose response is not stored is marked `BYPASS` too, with th
 * `disabled` – caching was turned off (`RFRAC_DISABLE`) while the response was being generated.
 * `error` – storing failed, or the tags of the response could not be collected completely; the error is shown on the plugin's admin pages.
 
+More causes and how to fix them: [why an endpoint is not cached](https://rockfire.nl/docs/faq/#not-cached).
+
 = Can I cache POST, PUT or PATCH requests? =
 
 Yes, for front ends that read data with a `POST`, `PUT` or `PATCH` request (a search or filter endpoint, for example). It is an opt-in per route, and `GET` stays the only method cached everywhere else:
@@ -172,7 +184,7 @@ With WooCommerce active, the tags of its public Store API responses are `wc-pric
 
 Actions to react to flushes, stores, failures, maintenance and the plugin lifecycle, such as `rfrac/flushed` (purge a CDN after a flush) and `rfrac/stored`. Filters to change routes, bypass rules, cache keys, tags, invalidation and admin access, such as `rfrac/route_rules`, `rfrac/bypass_headers`, `rfrac/entry_ttl`, `rfrac/store_allowed` and `rfrac/settings_capability`. Filters that are compiled into the configuration apply after the next recompile, such as a settings save.
 
-Every hook, with its parameters and examples, is in the hooks reference at https://rockfire.nl/docs/hooks/ and in `includes/class-hooks.php`.
+Every hook, with its parameters and examples, is in the [hooks reference](https://rockfire.nl/docs/hooks/) and in `includes/class-hooks.php`.
 
 = Which WP-CLI commands are available? =
 
@@ -250,7 +262,7 @@ Install and activate this plugin, import the settings of WP REST Cache, then dea
 
 Import from the notice on the Plugins screen ("Review on the Import page" previews it without saving) or with `wp rfrac import-legacy` (`--dry-run` previews, `--network` runs on every site of a network). The report gives every value a status: Imported, Kept, Adjusted, Skipped or Unsupported. The cache entries of WP REST Cache are not imported and its data stays untouched.
 
-Afterwards, check for `X-Rfrac-Cache: HIT`, `MISS` or `BYPASS` instead of `X-WP-Cached-Call`, and use `wp rfrac flush` instead of `wp wp-rest-cache flush`. The full guide, with the notices and the report explained: https://rockfire.nl/docs/migration/
+Afterwards, check for `X-Rfrac-Cache: HIT`, `MISS` or `BYPASS` instead of `X-WP-Cached-Call`, and use `wp rfrac flush` instead of `wp wp-rest-cache flush`. The [migration guide](https://rockfire.nl/docs/migration/) explains the notices and the report.
 
 = Do my WP REST Cache constants still work? =
 
@@ -269,13 +281,13 @@ The Site Health test "WP REST Cache compatibility" reports each old constant tha
 
 Most do. The plugin fires most old `wp_rest_cache/…` hooks from their replacement hook, and WordPress reports each as deprecated while WP_DEBUG is on. `wp_rest_cache/cache_key`, `wp_rest_cache/filter_cache_output` and `wp_rest_cache/pre_output_headers` have no replacement hook. A cache hit applies no plugin filters, so callbacks that depend on the request run on hits only with `define( 'RFRAC_LEGACY_HIT_FILTERS', true );` in `wp-config.php`, which makes hits slower. A hit then applies the old filters directly, as plain filters that never log a notice. A hit served by the must-use file `rfrac-early-cache.php` comes before plugins and the theme load, so their callbacks do not run on it: hook them in a must-use plugin that sorts before `rfrac-early-cache.php`. **Without the constant nothing is stored while `wp_rest_cache/cache_key` or `wp_rest_cache/filter_cache_output` is hooked** (reason `filtered`): define the constant or unhook the callback.
 
-The hooks of removed features no longer fire; REST API Cache → Import and Site Health list the ones your site still uses. Every old hook with its replacement: https://rockfire.nl/docs/migration/legacy-hooks/
+The hooks of removed features no longer fire; REST API Cache → Import and Site Health list the ones your site still uses. Every old hook with its replacement is listed in the [legacy hooks reference](https://rockfire.nl/docs/migration/legacy-hooks/).
 
 = Does code that calls WP REST Cache classes still work? =
 
 Calls do not cause a fatal error once WP REST Cache is removed: seven classes have a shim, among them `Caching`, `Endpoint_Api` and the controllers `Post_Controller`, `Term_Controller` and `Attachment_Controller`. A call that still works, such as `Caching::delete_cache_by_endpoint()` or `delete_related_caches()`, runs its replacement (`rfrac_flush_url()`, `rfrac_flush_route()` or `rfrac_flush_tag()`) and raises a deprecation notice. Any other call does nothing, returns a neutral value and is listed under "Classes" in REST API Cache → Import and Site Health.
 
-Routes registered with the old controllers are no longer cached automatically: enable them under REST API Cache → Routes. The shims only cover calls made from `plugins_loaded` or later. Every method and what it does now: https://rockfire.nl/docs/migration/legacy-classes/
+Routes registered with the old controllers are no longer cached automatically: enable them under REST API Cache → Routes. The shims only cover calls made from `plugins_loaded` or later. Every method and what it does now is listed in the [legacy classes reference](https://rockfire.nl/docs/migration/legacy-classes/).
 
 = What does uninstalling remove? =
 
