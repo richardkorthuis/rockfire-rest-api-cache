@@ -1,0 +1,2645 @@
+# Copyright (C) 2026 Rockfire
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rockfire – REST API Cache 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rockfire-rest-api-cache/\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-20T09:57:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: rockfire-rest-api-cache\n"
+
+#. Plugin Name of the plugin
+#: rockfire-rest-api-cache.php:11
+msgid "Rockfire – REST API Cache"
+msgstr ""
+
+#. Description of the plugin
+#: rockfire-rest-api-cache.php:12
+msgid "Fast, security-hardened caching for the WordPress REST API."
+msgstr ""
+
+#. Author of the plugin
+#: rockfire-rest-api-cache.php:18
+msgid "Rockfire"
+msgstr ""
+
+#. Author URI of the plugin
+#: rockfire-rest-api-cache.php:19
+msgid "https://profiles.wordpress.org/rockfire/"
+msgstr ""
+
+#: admin/class-admin-bar.php:94
+msgid "Flush REST cache"
+msgstr ""
+
+#: admin/class-admin-bar.php:97
+msgid "Flush every cached REST API response of this site"
+msgstr ""
+
+#: admin/class-admin.php:240
+#: admin/class-admin.php:241
+#: includes/health/class-site-health.php:388
+msgid "REST API Cache"
+msgstr ""
+
+#. translators: %s: error message.
+#: admin/class-admin.php:356
+#, php-format
+msgid "REST API Cache could not update its database tables; caching is paused. Error: %s"
+msgstr ""
+
+#. translators: 1: date and time, 2: where it failed, 3: error message.
+#: admin/class-admin.php:368
+#, php-format
+msgid "REST API Cache recorded an error on %1$s (%2$s): %3$s"
+msgstr ""
+
+#: admin/class-admin.php:375
+msgid "Dismiss this error"
+msgstr ""
+
+#: admin/class-admin.php:413
+msgid "REST API Cache runs in fallback mode: the must-use file for early caching is not installed or is outdated. Caching still works, but cache hits are served later in the request."
+msgstr ""
+
+#. translators: %s: reason, a full sentence.
+#: admin/class-admin.php:419
+#, php-format
+msgid "The last install attempt failed: %s"
+msgstr ""
+
+#: admin/class-admin.php:424
+#: admin/views/status-table.php:101
+msgid "Install must-use file"
+msgstr ""
+
+#: admin/class-admin.php:432
+msgid "Or make the directory writable, reload this page and click Install must-use file."
+msgstr ""
+
+#: admin/class-admin.php:453
+#: admin/pages/class-settings-page.php:106
+#: admin/pages/class-settings-page.php:115
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:475
+msgid "A plugin was switched on or off. Cached responses may be outdated. Flush all clears them and removes this notice."
+msgstr ""
+
+#: admin/class-admin.php:478
+#: admin/views/tools.php:28
+msgid "Flush all"
+msgstr ""
+
+#: admin/class-admin.php:479
+#: admin/class-coexistence-notice.php:223
+#: includes/legacy/class-import-notice.php:107
+#: includes/legacy/class-import-notice.php:142
+msgid "Dismiss"
+msgstr ""
+
+#. translators: %d: number of cached responses.
+#: admin/class-admin.php:510
+#: admin/pages/class-tools-page.php:291
+#, php-format
+msgid "Flushed %d cached response."
+msgid_plural "Flushed %d cached responses."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-capability.php:69
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: admin/class-coexistence-notice.php:133
+msgid "Rockfire – REST API Cache is paused because WP REST Cache is also active. Deactivate WP REST Cache to enable caching."
+msgstr ""
+
+#: admin/class-coexistence-notice.php:138
+msgid "Go to Plugins"
+msgstr ""
+
+#: admin/class-mu-help.php:35
+msgid "Installing the must-use file is disabled by the RFRAC_DISABLE_MU_INSTALL constant."
+msgstr ""
+
+#: admin/class-mu-help.php:37
+msgid "WordPress does not allow file changes on this site (DISALLOW_FILE_MODS)."
+msgstr ""
+
+#: admin/class-mu-help.php:39
+msgid "The must-use plugins directory is not writable."
+msgstr ""
+
+#: admin/class-mu-help.php:41
+msgid "WordPress cannot write files directly on this server (FS_METHOD is not \"direct\")."
+msgstr ""
+
+#: admin/class-mu-help.php:43
+msgid "The WordPress filesystem is not available."
+msgstr ""
+
+#: admin/class-mu-help.php:45
+msgid "The must-use template could not be read."
+msgstr ""
+
+#: admin/class-mu-help.php:47
+msgid "The file could not be written."
+msgstr ""
+
+#: admin/class-mu-help.php:49
+msgid "The written file did not match the template."
+msgstr ""
+
+#: admin/class-mu-help.php:51
+msgid "The file could not be moved into place."
+msgstr ""
+
+#. translators: 1: path of the must-use template, 2: path of the must-use file.
+#: admin/class-mu-help.php:84
+#, php-format
+msgid "To install the must-use file manually, copy %1$s to %2$s."
+msgstr ""
+
+#: admin/class-mu-help.php:90
+msgid "The paths are relative to the wp-content directory."
+msgstr ""
+
+#. translators: 1: version placeholder, 2: plugin version, 3: basename placeholder, 4: plugin basename.
+#: admin/class-mu-help.php:96
+#, php-format
+msgid "In the copy, replace %1$s with %2$s and %3$s with %4$s."
+msgstr ""
+
+#: admin/pages/class-caches-page.php:117
+#: admin/pages/class-caches-page.php:124
+msgid "Caches"
+msgstr ""
+
+#: admin/pages/class-caches-page.php:143
+msgid "Entries per page"
+msgstr ""
+
+#: admin/pages/class-caches-page.php:158
+msgid "No cache entries were selected."
+msgstr ""
+
+#: admin/pages/class-caches-page.php:215
+#: admin/pages/class-caches-page.php:308
+msgid "Cache entry not found."
+msgstr ""
+
+#. translators: %s: number of entries
+#: admin/pages/class-caches-page.php:234
+#, php-format
+msgid "%s cache entry flushed."
+msgid_plural "%s cache entries flushed."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: number of entries
+#: admin/pages/class-caches-page.php:237
+#, php-format
+msgid "%s cache entry deleted."
+msgid_plural "%s cache entries deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/pages/class-caches-page.php:309
+#: admin/views/entry-details.php:26
+msgid "Back to the caches"
+msgstr ""
+
+#: admin/pages/class-routes-page.php:152
+#: admin/pages/class-routes-page.php:161
+msgid "Routes"
+msgstr ""
+
+#: admin/pages/class-routes-page.php:185
+msgid "Routes per page"
+msgstr ""
+
+#. translators: %d: number of routes.
+#: admin/pages/class-routes-page.php:230
+#, php-format
+msgid "%d route updated."
+msgid_plural "%d routes updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/pages/class-routes-page.php:385
+#: admin/pages/class-routes-page.php:547
+#: admin/pages/class-routes-page.php:672
+msgid "Route not found."
+msgstr ""
+
+#: admin/pages/class-routes-page.php:386
+#: admin/views/route-edit.php:28
+msgid "Back to the routes"
+msgstr ""
+
+#: admin/pages/class-routes-page.php:510
+msgid "Route saved."
+msgstr ""
+
+#. translators: %d: TTL in seconds.
+#: admin/pages/class-routes-page.php:513
+#, php-format
+msgid "TTL adjusted to %d seconds."
+msgstr ""
+
+#: admin/pages/class-routes-page.php:530
+msgid "Route reset to defaults."
+msgstr ""
+
+#: admin/pages/class-routes-page.php:532
+msgid "This route already uses its defaults."
+msgstr ""
+
+#. translators: %d: number of cached responses.
+#: admin/pages/class-routes-page.php:558
+#, php-format
+msgid "Flushed %d cached response of this route."
+msgid_plural "Flushed %d cached responses of this route."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/pages/class-routes-page.php:576
+#: admin/pages/class-routes-page.php:613
+#: includes/services/class-route-service.php:476
+#: includes/services/class-route-service.php:499
+msgid "Unknown route preset."
+msgstr ""
+
+#. translators: %s: name of a group of routes.
+#: admin/pages/class-routes-page.php:586
+#, php-format
+msgid "Every registered route of %s is already enabled."
+msgstr ""
+
+#. translators: %s: name of a group of routes.
+#: admin/pages/class-routes-page.php:591
+#, php-format
+msgid "No routes of %s were enabled."
+msgstr ""
+
+#. translators: 1: number of routes, 2: name of a group of routes.
+#: admin/pages/class-routes-page.php:596
+#, php-format
+msgid "Enabled %1$d route of %2$s."
+msgid_plural "Enabled %1$d routes of %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: name of a group of routes.
+#: admin/pages/class-routes-page.php:621
+#, php-format
+msgid "No route of %s is enabled."
+msgstr ""
+
+#. translators: 1: number of routes, 2: name of a group of routes.
+#: admin/pages/class-routes-page.php:626
+#, php-format
+msgid "Disabled %1$d route of %2$s."
+msgid_plural "Disabled %1$d routes of %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of routes.
+#: admin/pages/class-routes-page.php:649
+#, php-format
+msgid "%d route was skipped because it can not be changed."
+msgid_plural "%d routes were skipped because they can not be changed."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of routes.
+#: admin/pages/class-routes-page.php:656
+#, php-format
+msgid "%d route was skipped because it needs its methods chosen on its edit screen."
+msgid_plural "%d routes were skipped because they need their methods chosen on their edit screens."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/pages/class-settings-page.php:169
+msgid "Defaults"
+msgstr ""
+
+#: admin/pages/class-settings-page.php:170
+msgid "Request rules"
+msgstr ""
+
+#: admin/pages/class-settings-page.php:171
+msgid "Limits"
+msgstr ""
+
+#: admin/pages/class-settings-page.php:172
+#: includes/health/class-site-health.php:563
+#: includes/legacy/class-health.php:457
+msgid "Performance"
+msgstr ""
+
+#: admin/pages/class-settings-page.php:248
+msgid "The settings could not be saved to the database."
+msgstr ""
+
+#. translators: %s: constant name.
+#: admin/pages/class-settings-page.php:344
+#, php-format
+msgid "Locked by constant %s in wp-config.php"
+msgstr ""
+
+#: admin/pages/class-settings-page.php:352
+msgid "Turned on by a filter or a carried-over WP REST Cache callback, so requests with a nonce are cached whatever this box says."
+msgstr ""
+
+#: admin/pages/class-settings-page.php:357
+msgid "Turned off by a filter, so requests with a nonce are not cached whatever this box says."
+msgstr ""
+
+#: admin/pages/class-tools-page.php:91
+#: admin/pages/class-tools-page.php:100
+msgid "Tools"
+msgstr ""
+
+#: admin/pages/class-tools-page.php:185
+msgid "Enter a full http(s) URL on this site."
+msgstr ""
+
+#: admin/pages/class-tools-page.php:202
+#: includes/services/class-route-service.php:283
+#: includes/services/class-route-service.php:337
+msgid "Unknown route."
+msgstr ""
+
+#: admin/pages/class-tools-page.php:220
+msgid "Maintenance is already running in another request. Nothing was done; try again in a minute."
+msgstr ""
+
+#. translators: 1: deleted entries, 2: evicted entries, 3: remaining backlog.
+#: admin/pages/class-tools-page.php:226
+#, php-format
+msgid "Maintenance deleted %1$d stale entries and evicted %2$d entries; %3$d stale entries remain."
+msgstr ""
+
+#. translators: %s: the result of the run, a full sentence.
+#: admin/pages/class-tools-page.php:234
+#, php-format
+msgid "Maintenance could not make progress: entries could not be deleted. %s"
+msgstr ""
+
+#: admin/pages/class-tools-page.php:258
+msgid "Sorry, you are not allowed to install the must-use file."
+msgstr ""
+
+#: admin/pages/class-tools-page.php:263
+msgid "The must-use file is installed; REST API Cache now serves cache hits early."
+msgstr ""
+
+#. translators: %s: reason, a full sentence.
+#: admin/pages/class-tools-page.php:271
+#, php-format
+msgid "The must-use file could not be installed: %s"
+msgstr ""
+
+#: admin/pages/class-tools-page.php:272
+msgid "The must-use file could not be installed."
+msgstr ""
+
+#: admin/tables/class-entries-table.php:131
+#: admin/views/entry-details.php:47
+msgid "Request"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:132
+msgid "Method"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:133
+#: admin/tables/class-routes-table.php:146
+#: admin/views/entry-details.php:48
+#: admin/views/route-edit.php:81
+msgid "Route"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:134
+#: admin/views/entry-details.php:50
+msgid "State"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:135
+#: admin/views/entry-details.php:51
+msgid "Size"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:136
+#: admin/views/entry-details.php:52
+msgid "Hits"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:137
+#: admin/views/entry-details.php:53
+msgid "Created"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:138
+#: admin/views/entry-details.php:54
+msgid "Expires"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:139
+#: admin/views/entry-details.php:55
+msgid "Last hit"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:174
+#: admin/tables/class-entries-table.php:389
+#: admin/tables/class-routes-table.php:293
+#: admin/views/entry-details.php:34
+#: admin/views/tools.php:23
+msgid "Flush"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:175
+#: admin/tables/class-entries-table.php:396
+#: admin/views/entry-details.php:39
+msgid "Delete"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:187
+#: admin/tables/class-routes-table.php:197
+msgid "All"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:188
+#: admin/tables/class-entries-table.php:313
+#: includes/legacy/class-health.php:304
+msgid "Active"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:189
+#: admin/tables/class-entries-table.php:317
+#: admin/views/entry-details.php:56
+msgid "Flushed"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:190
+#: admin/tables/class-entries-table.php:315
+msgid "Expired"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:285
+msgid "No cache entries found."
+msgstr ""
+
+#. translators: %d: entry id
+#: admin/tables/class-entries-table.php:363
+#, php-format
+msgid "Select entry %d"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:383
+#: includes/legacy/views/findings.php:19
+msgid "Details"
+msgstr ""
+
+#: admin/tables/class-entries-table.php:395
+#: admin/views/entry-details.php:39
+msgid "Delete this cache entry?"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:147
+#: admin/views/route-edit.php:85
+msgid "Namespace"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:148
+#: admin/views/route-edit.php:115
+#: admin/views/tools.php:18
+#: includes/legacy/views/findings.php:17
+msgid "Status"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:149
+#: admin/views/route-edit.php:144
+msgid "TTL"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:150
+#: admin/views/route-edit.php:161
+msgid "Parameters"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:151
+msgid "Vary"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:152
+msgid "Invalidation"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:184
+msgid "Enable"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:185
+msgid "Exclude"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:186
+#: admin/views/route-edit.php:259
+msgid "Reset to defaults"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:198
+#: admin/tables/class-routes-table.php:346
+#: admin/views/route-edit.php:119
+#: includes/integrations/woocommerce/class-health.php:94
+msgid "Enabled"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:199
+#: admin/tables/class-routes-table.php:350
+#: includes/integrations/woocommerce/class-health.php:94
+msgid "Disabled"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:200
+msgid "Configured"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:201
+#: admin/tables/class-routes-table.php:343
+msgid "Locked"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:202
+#: admin/tables/class-routes-table.php:332
+msgid "Not registered"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:232
+msgid "Filter by namespace"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:234
+msgid "All namespaces"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:239
+msgid "Filter"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:249
+msgid "No routes found."
+msgstr ""
+
+#. translators: %s: route pattern.
+#: admin/tables/class-routes-table.php:267
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:287
+msgid "Edit"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:290
+msgid "View entries"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:299
+#: admin/views/route-edit.php:259
+msgid "Reset this route to its default rule?"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:300
+msgid "Reset"
+msgstr ""
+
+#. translators: %s: why the stored rule is invalid.
+#: admin/tables/class-routes-table.php:335
+#: admin/tables/class-routes-table.php:357
+#, php-format
+msgid "(invalid stored rule: %s Reset it.)"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:340
+msgid "Denied"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:348
+#: admin/views/route-edit.php:120
+msgid "Excluded"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:353
+msgid "(default)"
+msgstr ""
+
+#. translators: %s: duration such as "1 hour".
+#: admin/tables/class-routes-table.php:377
+#, php-format
+msgid "%s (site default)"
+msgstr ""
+
+#. translators: %d: maximum number of query parameters.
+#: admin/tables/class-routes-table.php:398
+#, php-format
+msgid "All (max %d)"
+msgstr ""
+
+#. translators: %d: number of ignored parameters.
+#: admin/tables/class-routes-table.php:402
+#, php-format
+msgid "Registered args, %d ignored"
+msgid_plural "Registered args, %d ignored"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/tables/class-routes-table.php:404
+msgid "Registered args"
+msgstr ""
+
+#. translators: %s: comma separated parameter names.
+#: admin/tables/class-routes-table.php:408
+#, php-format
+msgid "Bypass when present: %s"
+msgstr ""
+
+#. translators: %s: comma separated request methods such as GET, POST.
+#: admin/tables/class-routes-table.php:412
+#, php-format
+msgid "Methods: %s"
+msgstr ""
+
+#: admin/tables/class-routes-table.php:452
+msgid "Automatic tags"
+msgstr ""
+
+#. translators: %s: comma separated post types.
+#: admin/tables/class-routes-table.php:455
+#, php-format
+msgid "Also on changes of the post types: %s"
+msgstr ""
+
+#. translators: %s: comma separated taxonomies.
+#: admin/tables/class-routes-table.php:459
+#, php-format
+msgid "Also on changes of the taxonomies: %s"
+msgstr ""
+
+#. translators: %s: route pattern
+#: admin/views/caches.php:22
+#, php-format
+msgid "Showing the entries of the route %s."
+msgstr ""
+
+#: admin/views/caches.php:26
+msgid "Show all routes"
+msgstr ""
+
+#: admin/views/caches.php:29
+msgid "The route filter does not match a known route and was ignored."
+msgstr ""
+
+#: admin/views/caches.php:43
+msgid "Search requests"
+msgstr ""
+
+#: admin/views/entry-details.php:43
+msgid "Entry"
+msgstr ""
+
+#: admin/views/entry-details.php:46
+msgid "ID"
+msgstr ""
+
+#: admin/views/entry-details.php:49
+msgid "Rule"
+msgstr ""
+
+#: admin/views/entry-details.php:57
+msgid "Cache key (includes the Vary information)"
+msgstr ""
+
+#: admin/views/entry-details.php:58
+msgid "URL hash"
+msgstr ""
+
+#: admin/views/entry-details.php:62
+msgid "Tags"
+msgstr ""
+
+#: admin/views/entry-details.php:64
+msgid "This entry has no tags."
+msgstr ""
+
+#: admin/views/entry-details.php:73
+msgid "Headers"
+msgstr ""
+
+#: admin/views/entry-details.php:76
+msgid "Payload"
+msgstr ""
+
+#: admin/views/entry-details.php:78
+msgid "Payload not available (evicted from object cache)."
+msgstr ""
+
+#. translators: %s: size shown, e.g. 512 KB
+#: admin/views/entry-details.php:85
+#, php-format
+msgid "The payload is large; only the first %s are shown."
+msgstr ""
+
+#. translators: %s: constant name.
+#: admin/views/route-edit.php:35
+#, php-format
+msgid "Locked by %s in wp-config.php"
+msgstr ""
+
+#: admin/views/route-edit.php:41
+msgid "This route is always bypassed for security (cart/checkout, current user, batch)."
+msgstr ""
+
+#: admin/views/route-edit.php:43
+msgid "This route is not registered any more. Its stored rule can only be reset."
+msgstr ""
+
+#. translators: %s: request methods such as GET, comma separated.
+#: admin/views/route-edit.php:53
+#, php-format
+msgid "This route checks access with its own permission callback for %s."
+msgstr ""
+
+#: admin/views/route-edit.php:59
+msgid "Responses are only stored for visitors who are not logged in. But when the check relies on something the cache does not see, such as a secret request header or the visitor's IP address, a response one visitor was allowed to see is served to every visitor."
+msgstr ""
+
+#: admin/views/route-edit.php:65
+msgid "Responses of this route are cached: keep caching it only when the route is public to every visitor who is not logged in."
+msgstr ""
+
+#: admin/views/route-edit.php:66
+msgid "Before you cache this route, make sure it is public to every visitor who is not logged in."
+msgstr ""
+
+#. translators: 1: constant name, 2: filter name.
+#: admin/views/route-edit.php:69
+#, php-format
+msgid "If the check relies on a request header, add that header to %1$s in wp-config.php or with the %2$s filter, so requests that carry it bypass the cache."
+msgstr ""
+
+#. translators: %s: request method such as GET or POST.
+#: admin/views/route-edit.php:95
+#, php-format
+msgid "Registered %s arguments"
+msgstr ""
+
+#: admin/views/route-edit.php:105
+msgid "Cached by default"
+msgstr ""
+
+#: admin/views/route-edit.php:106
+#: admin/views/status-table.php:35
+#: admin/views/status-table.php:65
+msgid "Yes"
+msgstr ""
+
+#: admin/views/route-edit.php:106
+#: admin/views/status-table.php:38
+#: admin/views/status-table.php:65
+msgid "No"
+msgstr ""
+
+#: admin/views/route-edit.php:118
+msgid "Default"
+msgstr ""
+
+#: admin/views/route-edit.php:126
+msgid "Default follows the plugin: core content routes are cached, other routes are not until you enable them. Excluded routes are never cached."
+msgstr ""
+
+#: admin/views/route-edit.php:130
+msgid "Methods"
+msgstr ""
+
+#: admin/views/route-edit.php:135
+msgid "The request methods that are cached. Only methods the route registers can be chosen; a request with another method is never cached."
+msgstr ""
+
+#: admin/views/route-edit.php:137
+msgid "A cached POST, PUT or PATCH response is served without running the route's handler: anything the handler does besides returning data does not happen on a cache hit. Enable these methods only for routes that only read data."
+msgstr ""
+
+#: admin/views/route-edit.php:142
+msgid "Lifetime"
+msgstr ""
+
+#: admin/views/route-edit.php:145
+#: includes/services/class-settings-service.php:74
+#: includes/services/class-settings-service.php:83
+msgid "seconds"
+msgstr ""
+
+#. translators: %d: site default TTL in seconds.
+#: admin/views/route-edit.php:152
+#, php-format
+msgid "Leave empty to use the site default (%d seconds)."
+msgstr ""
+
+#: admin/views/route-edit.php:162
+msgid "Registered args only (recommended)"
+msgstr ""
+
+#. translators: %d: maximum number of query parameters.
+#: admin/views/route-edit.php:168
+#, php-format
+msgid "Allow all parameters (max %d)"
+msgstr ""
+
+#: admin/views/route-edit.php:174
+msgid "Every distinct query string is cached separately; requests with more parameters than the maximum are not cached."
+msgstr ""
+
+#: admin/views/route-edit.php:177
+msgid "Ignore these parameters"
+msgstr ""
+
+#: admin/views/route-edit.php:179
+msgid "One per line, for example utm_source. They do not change the cache key."
+msgstr ""
+
+#. translators: %s: comma separated list of names.
+#: admin/views/route-edit.php:186
+#: admin/views/route-edit.php:213
+#, php-format
+msgid "Also applied to every route: %s"
+msgstr ""
+
+#: admin/views/route-edit.php:195
+msgid "Always bypass when present"
+msgstr ""
+
+#: admin/views/route-edit.php:197
+msgid "One per line. A request with one of these parameters is never cached or served from the cache."
+msgstr ""
+
+#: admin/views/route-edit.php:202
+msgid "Vary headers"
+msgstr ""
+
+#: admin/views/route-edit.php:204
+msgid "Request headers that change the response"
+msgstr ""
+
+#: admin/views/route-edit.php:206
+msgid "One per line, for example Accept-Language. Authorization, Cookie and Set-Cookie are not allowed."
+msgstr ""
+
+#: admin/views/route-edit.php:224
+msgid "Flush when these change"
+msgstr ""
+
+#: admin/views/route-edit.php:225
+msgid "Cached responses of this route are flushed automatically when content they contain changes. Add more triggers here."
+msgstr ""
+
+#: admin/views/route-edit.php:227
+msgid "Post types"
+msgstr ""
+
+#: admin/views/route-edit.php:233
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/views/route-edit.php:242
+msgid "Save route"
+msgstr ""
+
+#: admin/views/route-edit.php:253
+msgid "Flush cached responses"
+msgstr ""
+
+#: admin/views/routes.php:20
+msgid "Every REST route that registers GET, POST, PUT or PATCH and the policy it gets. Denied routes are never cached (cart, checkout, orders, shopper lists, agentic checkout, private WooCommerce routes, current user, batch). Locked routes are defined by a constant in wp-config.php."
+msgstr ""
+
+#. translators: %s: name of a group of routes.
+#: admin/views/routes.php:32
+#, php-format
+msgid "Disable %s"
+msgstr ""
+
+#. translators: %s: name of a group of routes.
+#: admin/views/routes.php:34
+#, php-format
+msgid "Enable %s"
+msgstr ""
+
+#: admin/views/routes.php:51
+msgid "Search routes"
+msgstr ""
+
+#: admin/views/settings.php:23
+#: includes/services/class-settings-service.php:121
+msgid "Storage"
+msgstr ""
+
+#: admin/views/status-table.php:20
+#: includes/services/class-settings-service.php:171
+msgid "Object cache"
+msgstr ""
+
+#: admin/views/status-table.php:21
+#: includes/services/class-settings-service.php:170
+msgid "Database"
+msgstr ""
+
+#: admin/views/status-table.php:28
+msgid "Active store"
+msgstr ""
+
+#: admin/views/status-table.php:32
+msgid "Persistent object cache"
+msgstr ""
+
+#: admin/views/status-table.php:36
+msgid "Payloads are stored in the object cache automatically."
+msgstr ""
+
+#: admin/views/status-table.php:43
+#: admin/views/status-table.php:85
+msgid "Must-use mode"
+msgstr ""
+
+#: admin/views/status-table.php:48
+msgid "Early (must-use file installed)"
+msgstr ""
+
+#: admin/views/status-table.php:49
+msgid "Fallback (served later in the request)"
+msgstr ""
+
+#: admin/views/status-table.php:62
+#: includes/legacy/class-health.php:321
+msgid "Never"
+msgstr ""
+
+#: admin/views/status-table.php:68
+msgid "Early"
+msgstr ""
+
+#: admin/views/status-table.php:71
+msgid "Outdated"
+msgstr ""
+
+#: admin/views/status-table.php:74
+msgid "Fallback"
+msgstr ""
+
+#: admin/views/status-table.php:92
+msgid "Install the must-use file to serve cache hits early."
+msgstr ""
+
+#: admin/views/status-table.php:97
+msgid "Only a user who can manage plugins (a network administrator on multisite) can install it from here."
+msgstr ""
+
+#: admin/views/status-table.php:109
+#: includes/health/class-site-health.php:403
+msgid "Store"
+msgstr ""
+
+#: admin/views/status-table.php:113
+msgid "Persistent object cache detected"
+msgstr ""
+
+#: admin/views/status-table.php:117
+msgid "Cached responses"
+msgstr ""
+
+#. translators: 1: active entries, 2: flushed entries, 3: expired entries, 4: total entries, 5: size.
+#: admin/views/status-table.php:123
+#, php-format
+msgid "%1$d active, %2$d flushed, %3$d expired, %4$d total (%5$s)"
+msgstr ""
+
+#: admin/views/status-table.php:135
+#: includes/health/class-site-health.php:424
+#: includes/services/class-settings-service.php:88
+msgid "Maximum entries"
+msgstr ""
+
+#: admin/views/status-table.php:139
+msgid "Maintenance backlog"
+msgstr ""
+
+#: admin/views/status-table.php:143
+msgid "Last maintenance"
+msgstr ""
+
+#: admin/views/status-table.php:147
+#: includes/health/class-site-health.php:428
+msgid "Next maintenance"
+msgstr ""
+
+#: admin/views/status-table.php:148
+#: includes/health/class-site-health.php:379
+msgid "Not scheduled"
+msgstr ""
+
+#: admin/views/status-table.php:151
+msgid "WP-Cron disabled"
+msgstr ""
+
+#: admin/views/status-table.php:155
+#: includes/health/class-site-health.php:395
+msgid "Database version"
+msgstr ""
+
+#. translators: 1: installed version, 2: expected version.
+#: admin/views/status-table.php:161
+#, php-format
+msgid "Installed %1$d, expected %2$d"
+msgstr ""
+
+#: admin/views/status-table.php:170
+msgid "Tables present"
+msgstr ""
+
+#: admin/views/status-table.php:171
+msgid "Not checked"
+msgstr ""
+
+#: admin/views/status-table.php:176
+msgid "The original WP REST Cache plugin is active. Caching is paused until it is deactivated, so the two plugins do not conflict."
+msgstr ""
+
+#: admin/views/tools.php:28
+msgid "Flush every cached response of this site?"
+msgstr ""
+
+#: admin/views/tools.php:35
+msgid "Flush by tag"
+msgstr ""
+
+#: admin/views/tools.php:37
+msgid "Flush tag"
+msgstr ""
+
+#. translators: %s: example tags.
+#: admin/views/tools.php:43
+#, php-format
+msgid "Tags look like %s. Separate several tags with commas."
+msgstr ""
+
+#: admin/views/tools.php:53
+msgid "Flush by URL"
+msgstr ""
+
+#: admin/views/tools.php:55
+msgid "Flush URL"
+msgstr ""
+
+#: admin/views/tools.php:62
+msgid "Flush a route"
+msgstr ""
+
+#: admin/views/tools.php:68
+msgid "Flush route"
+msgstr ""
+
+#: admin/views/tools.php:74
+msgid "Maintenance"
+msgstr ""
+
+#: admin/views/tools.php:75
+msgid "Delete flushed and expired entries and evict the oldest entries above the limit. One bounded pass runs per click."
+msgstr ""
+
+#: admin/views/tools.php:77
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); maintenance only runs when you click the button or from your own scheduler."
+msgstr ""
+
+#: admin/views/tools.php:81
+msgid "Run now"
+msgstr ""
+
+#: includes/cli/class-command.php:143
+msgid "Specify exactly one of --all, --tag, --request-url, --route."
+msgstr ""
+
+#: includes/cli/class-command.php:188
+msgid "No site of the network accepts this URL. Enter a full http(s) URL of a REST route of one of the sites."
+msgstr ""
+
+#. translators: %d: number of flushed cached responses over all sites
+#: includes/cli/class-command.php:191
+#, php-format
+msgid "Flushed %d cached responses in total."
+msgstr ""
+
+#. translators: %d: number of sites where the flush failed
+#: includes/cli/class-command.php:194
+#, php-format
+msgid "The flush failed on %d site(s)."
+msgstr ""
+
+#. translators: %s: the formats that can be used, separated by commas
+#: includes/cli/class-command.php:269
+#: includes/legacy/class-import-cli.php:96
+#, php-format
+msgid "Invalid format. Use one of: %s."
+msgstr ""
+
+#. translators: %s: the states that can be used, separated by commas
+#: includes/cli/class-command.php:274
+#, php-format
+msgid "Invalid state. Use one of: %s."
+msgstr ""
+
+#: includes/cli/class-command.php:356
+#: includes/cli/class-config-command.php:81
+msgid "Invalid format. Use table, json or yaml."
+msgstr ""
+
+#. translators: %s: serving mode
+#: includes/cli/class-command.php:385
+#, php-format
+msgid "The must-use loader is not active (mode: %s); responses are served late in the request."
+msgstr ""
+
+#: includes/cli/class-command.php:388
+msgid "The cache tables are missing. Deactivate and reactivate the plugin to create them."
+msgstr ""
+
+#: includes/cli/class-command.php:446
+msgid "Maintenance could not start on this site (its lock could not be taken); check that its database tables exist."
+msgstr ""
+
+#: includes/cli/class-command.php:450
+msgid "Maintenance is already running; this site was skipped."
+msgstr ""
+
+#. translators: 1: number of deleted entries, 2: number of evicted entries
+#: includes/cli/class-command.php:456
+#, php-format
+msgid "Deleted %1$d, evicted %2$d."
+msgstr ""
+
+#: includes/cli/class-command.php:460
+msgid "Maintenance made no progress (for example because entries cannot be deleted); check the database and the error log."
+msgstr ""
+
+#. translators: %d: number of stale entries still waiting
+#: includes/cli/class-command.php:472
+#, php-format
+msgid "%d stale entries remain; run the command again."
+msgstr ""
+
+#. translators: %d: number of active entries
+#: includes/cli/class-command.php:475
+#, php-format
+msgid "There are still more active entries (%d) than the entry limit allows; run the command again."
+msgstr ""
+
+#: includes/cli/class-command.php:482
+msgid "Maintenance is already running; nothing was done."
+msgstr ""
+
+#. translators: 1: number of sites that made no progress, 2: number of deleted entries, 3: number of evicted entries
+#: includes/cli/class-command.php:486
+#, php-format
+msgid "Maintenance made no progress on %1$d site(s). Deleted %2$d, evicted %3$d."
+msgstr ""
+
+#. translators: 1: number of deleted entries, 2: number of evicted entries
+#: includes/cli/class-command.php:491
+#, php-format
+msgid "Deleted %1$d, evicted %2$d in total."
+msgstr ""
+
+#. translators: %d: number of sites
+#: includes/cli/class-command.php:494
+#, php-format
+msgid "%d site(s) skipped because maintenance was already running."
+msgstr ""
+
+#. translators: %d: number of sites
+#: includes/cli/class-command.php:498
+#, php-format
+msgid "%d site(s) still have work left; run the command again."
+msgstr ""
+
+#: includes/cli/class-command.php:543
+msgid "The import is not available."
+msgstr ""
+
+#: includes/cli/class-command.php:564
+#: includes/legacy/class-import-cli.php:174
+msgid "The plugin is not active on any site of the network."
+msgstr ""
+
+#. translators: %s: route or path the user entered
+#: includes/cli/class-command.php:590
+#, php-format
+msgid "Unknown route: %s"
+msgstr ""
+
+#. translators: %d: number of flushed cached responses
+#: includes/cli/class-command.php:607
+#, php-format
+msgid "Flushed %d cached responses."
+msgstr ""
+
+#. translators: %s: setting key
+#: includes/cli/class-config-command.php:90
+#: includes/cli/class-config-command.php:103
+#, php-format
+msgid "Unknown setting: %s"
+msgstr ""
+
+#: includes/cli/class-network-iterator.php:50
+msgid "--network requires multisite."
+msgstr ""
+
+#: includes/health/class-site-health.php:86
+msgid "REST API Cache early serving"
+msgstr ""
+
+#: includes/health/class-site-health.php:90
+msgid "REST API Cache database tables"
+msgstr ""
+
+#: includes/health/class-site-health.php:94
+msgid "REST API Cache cleanup"
+msgstr ""
+
+#: includes/health/class-site-health.php:98
+msgid "REST API Cache storage"
+msgstr ""
+
+#: includes/health/class-site-health.php:103
+msgid "REST API Cache routes with their own access check"
+msgstr ""
+
+#: includes/health/class-site-health.php:123
+msgid "Security"
+msgstr ""
+
+#: includes/health/class-site-health.php:130
+msgid "REST API Cache could not check the access of its cached routes"
+msgstr ""
+
+#. translators: %s: error message.
+#: includes/health/class-site-health.php:133
+#, php-format
+msgid "Reading the registered REST routes failed: %s"
+msgstr ""
+
+#: includes/health/class-site-health.php:146
+msgid "Cached REST routes have no access checks of their own"
+msgstr ""
+
+#: includes/health/class-site-health.php:147
+msgid "Every cached route is public, or checks access with WordPress core's own permission checks."
+msgstr ""
+
+#. translators: %d: number of routes not listed.
+#: includes/health/class-site-health.php:173
+#, php-format
+msgid "and %d more route"
+msgid_plural "and %d more routes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/health/class-site-health.php:176
+msgid "These cached routes check access with their own permission callback. Responses are only stored for visitors who are not logged in, but when such a check relies on something the cache does not see, such as a secret request header or the visitor's IP address, a response one visitor was allowed to see is served to every visitor."
+msgstr ""
+
+#. translators: 1: constant name, 2: filter name.
+#: includes/health/class-site-health.php:180
+#, php-format
+msgid "Keep caching a route only when it is public to every visitor who is not logged in. If its check relies on a request header, add that header to %1$s in wp-config.php or with the %2$s filter."
+msgstr ""
+
+#. translators: %d: number of routes.
+#: includes/health/class-site-health.php:190
+#, php-format
+msgid "%d cached REST route checks access with its own permission callback"
+msgid_plural "%d cached REST routes check access with their own permission callback"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/health/class-site-health.php:197
+msgid "Open the REST API Cache routes"
+msgstr ""
+
+#: includes/health/class-site-health.php:215
+msgid "Cached REST responses are served early"
+msgstr ""
+
+#: includes/health/class-site-health.php:216
+msgid "The must-use file is installed and up to date; cached responses are served before most of WordPress loads."
+msgstr ""
+
+#: includes/health/class-site-health.php:220
+msgid "Early serving is not active; responses are served after plugins load."
+msgstr ""
+
+#. translators: 1: path of the must-use template, 2: path of the must-use file.
+#: includes/health/class-site-health.php:228
+#, php-format
+msgid "To install it manually, copy %1$s to %2$s."
+msgstr ""
+
+#: includes/health/class-site-health.php:237
+msgid "Early serving of cached REST responses is not active"
+msgstr ""
+
+#: includes/health/class-site-health.php:253
+msgid "The database tables of the cache are missing, so nothing can be cached. Deactivate and reactivate the plugin to recreate them."
+msgstr ""
+
+#: includes/health/class-site-health.php:256
+msgid "REST API Cache tables are missing"
+msgstr ""
+
+#. translators: 1: installed database version, 2: expected database version.
+#: includes/health/class-site-health.php:262
+#, php-format
+msgid "The database tables exist, but the last upgrade did not finish (database version %1$s, expected %2$s). Deactivate and reactivate the plugin to run the upgrade again."
+msgstr ""
+
+#: includes/health/class-site-health.php:268
+msgid "REST API Cache database upgrade is incomplete"
+msgstr ""
+
+#: includes/health/class-site-health.php:274
+msgid "REST API Cache tables are present"
+msgstr ""
+
+#: includes/health/class-site-health.php:275
+msgid "Both database tables of the cache exist and are up to date."
+msgstr ""
+
+#. translators: 1: number of entries waiting for cleanup, 2: threshold.
+#: includes/health/class-site-health.php:299
+#, php-format
+msgid "%1$s entries are waiting for cleanup (threshold: %2$s)."
+msgstr ""
+
+#: includes/health/class-site-health.php:306
+msgid "The maintenance task is not scheduled."
+msgstr ""
+
+#: includes/health/class-site-health.php:308
+msgid "The maintenance task is more than an hour overdue."
+msgstr ""
+
+#: includes/health/class-site-health.php:316
+msgid "REST API Cache cleanup is up to date"
+msgstr ""
+
+#: includes/health/class-site-health.php:317
+msgid "Expired and flushed entries are cleaned up on schedule."
+msgstr ""
+
+#: includes/health/class-site-health.php:327
+msgid "REST API Cache cleanup needs attention"
+msgstr ""
+
+#: includes/health/class-site-health.php:346
+msgid "REST API Cache uses the persistent object cache"
+msgstr ""
+
+#: includes/health/class-site-health.php:347
+msgid "Persistent object cache detected; payloads are stored in the object cache."
+msgstr ""
+
+#: includes/health/class-site-health.php:353
+msgid "REST API Cache is set to the object cache, but there is no persistent object cache"
+msgstr ""
+
+#: includes/health/class-site-health.php:354
+msgid "The store is set to the object cache, but no persistent object cache is installed, so cached payloads do not survive between requests and nothing is served from the cache. Install a persistent object cache or set the store to the database or automatic."
+msgstr ""
+
+#: includes/health/class-site-health.php:359
+msgid "Payloads are stored in the database (one indexed query per hit)."
+msgstr ""
+
+#: includes/health/class-site-health.php:361
+msgid "No persistent object cache; payloads are stored in the database (one indexed query per hit)."
+msgstr ""
+
+#: includes/health/class-site-health.php:363
+msgid "REST API Cache uses the database"
+msgstr ""
+
+#: includes/health/class-site-health.php:391
+msgid "Plugin version"
+msgstr ""
+
+#: includes/health/class-site-health.php:399
+msgid "Serving mode"
+msgstr ""
+
+#: includes/health/class-site-health.php:407
+msgid "Active entries"
+msgstr ""
+
+#: includes/health/class-site-health.php:411
+msgid "Flushed entries"
+msgstr ""
+
+#: includes/health/class-site-health.php:415
+msgid "Expired entries"
+msgstr ""
+
+#: includes/health/class-site-health.php:419
+msgid "Total size"
+msgstr ""
+
+#: includes/health/class-site-health.php:432
+msgid "Settings locked by a constant"
+msgstr ""
+
+#: includes/health/class-site-health.php:433
+#: includes/legacy/class-health.php:366
+#: includes/legacy/class-health.php:386
+msgid "None"
+msgstr ""
+
+#: includes/health/class-site-health.php:458
+msgid "Installing the must-use file is disabled by RFRAC_DISABLE_MU_INSTALL."
+msgstr ""
+
+#: includes/health/class-site-health.php:461
+msgid "The must-use directory is not writable."
+msgstr ""
+
+#: includes/health/class-site-health.php:464
+msgid "The must-use file is outdated."
+msgstr ""
+
+#. translators: %s: failure code of the last install attempt.
+#: includes/health/class-site-health.php:469
+#, php-format
+msgid "The last install attempt failed (%s)."
+msgstr ""
+
+#: includes/health/class-site-health.php:471
+msgid "The must-use file is not installed."
+msgstr ""
+
+#. translators: %s: error message.
+#: includes/health/class-site-health.php:487
+#, php-format
+msgid "Last migration error: %s"
+msgstr ""
+
+#. translators: 1: where the failure happened, 2: error message.
+#: includes/health/class-site-health.php:517
+#, php-format
+msgid "Last recorded failure in %1$s: %2$s"
+msgstr ""
+
+#: includes/health/class-site-health.php:541
+msgid "Open the REST API Cache tools"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:66
+msgid "Rockfire – REST API Cache: WooCommerce"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:85
+msgid "WooCommerce version"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:89
+msgid "WooCommerce tested up to"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:93
+msgid "High-performance order storage"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:98
+msgid "Catalog routes"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:102
+msgid "Route snapshot"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:121
+msgid "Not declared"
+msgstr ""
+
+#. translators: 1: number of enabled WooCommerce catalog routes, 2: number of registered WooCommerce catalog routes.
+#: includes/integrations/woocommerce/class-health.php:143
+#, php-format
+msgid "%1$d of %2$d enabled"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:157
+msgid "Pending route discovery: refreshes on the next REST request outside the WooCommerce namespaces or when the settings are saved"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:160
+msgid "Current"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:178
+msgid "Per-visitor pricing"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:195
+msgid "Products and collection data are not cached: a tax-location filter is active"
+msgstr ""
+
+#. translators: %s: name of the filter.
+#: includes/integrations/woocommerce/class-health.php:200
+#, php-format
+msgid "Products and collection data are not cached: location pricing is forced on by the %s filter"
+msgstr ""
+
+#. translators: %s: name of the filter.
+#: includes/integrations/woocommerce/class-health.php:205
+#, php-format
+msgid "Products and collection data are cached: location pricing is forced off by the %s filter"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:209
+msgid "Products and collection data are cached: no tax-location filter is active"
+msgstr ""
+
+#. translators: 1: whether products and collection data are cached, and why, 2: the declared currency cookies.
+#: includes/integrations/woocommerce/class-health.php:215
+#, php-format
+msgid "%1$s. %2$s."
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:220
+msgid "The current status takes effect after the next recompile."
+msgstr ""
+
+#. translators: 1: name of the constant, 2: name of the filter.
+#: includes/integrations/woocommerce/class-health.php:309
+#, php-format
+msgid "Products and collection data are not cached: the global vary headers are unusable (see the %1$s constant and the %2$s filter)."
+msgstr ""
+
+#. translators: %d: the number of request headers a route can vary by.
+#: includes/integrations/woocommerce/class-health.php:315
+#, php-format
+msgid "Products and collection data are not cached: the global vary headers together with the vary headers of a route are more than %d request headers."
+msgstr ""
+
+#. translators: %s: name of the filter.
+#: includes/integrations/woocommerce/class-health.php:320
+#, php-format
+msgid "Products and collection data are not cached: the currency-cookie declaration is invalid (see the %s filter)."
+msgstr ""
+
+#: includes/integrations/woocommerce/class-health.php:346
+msgid "No currency cookies declared"
+msgstr ""
+
+#. translators: 1: name of a cookie, 2: number of values the cookie may have.
+#: includes/integrations/woocommerce/class-health.php:356
+#, php-format
+msgid "%1$s (%2$d value)"
+msgid_plural "%1$s (%2$d values)"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: the declared currency cookies, comma separated.
+#: includes/integrations/woocommerce/class-health.php:363
+#, php-format
+msgid "Currency cookies: %s"
+msgstr ""
+
+#: includes/integrations/woocommerce/class-module.php:195
+msgid "WooCommerce catalog"
+msgstr ""
+
+#: includes/legacy/class-bridge.php:109
+msgid "Rockfire – REST API Cache bridges this hook; see the migration section of its readme."
+msgstr ""
+
+#. translators: 1: an endpoint, such as wp/v2/posts, 2: a filter hook of WP REST Cache, 3: a route pattern, 4: a constant name.
+#: includes/legacy/class-endpoint-bridge.php:722
+#, php-format
+msgid "%1$s from %2$s does not change %3$s: its rule is defined by %4$s."
+msgstr ""
+
+#. translators: 1: an endpoint, such as wp/v2/posts, 2: a filter hook of WP REST Cache, 3: a route pattern.
+#: includes/legacy/class-endpoint-bridge.php:725
+#, php-format
+msgid "%1$s from %2$s does not change %3$s: its rule is set in this plugin."
+msgstr ""
+
+#. translators: 1: an endpoint, such as wp/v2/posts/5, 2: a filter hook of WP REST Cache, 3: comma separated route patterns.
+#: includes/legacy/class-endpoint-bridge.php:731
+#, php-format
+msgid "%1$s from %2$s is a concrete path; it applies to the whole route %3$s."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache.
+#: includes/legacy/class-endpoint-bridge.php:734
+#, php-format
+msgid "%1$s from %2$s is a pattern; only registered routes can be matched, so it is ignored."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache.
+#: includes/legacy/class-endpoint-bridge.php:737
+#, php-format
+msgid "%1$s from %2$s matches no registered route, so it is ignored."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: comma separated route patterns.
+#: includes/legacy/class-endpoint-bridge.php:740
+#, php-format
+msgid "%1$s from %2$s: %3$s are never cached."
+msgstr ""
+
+#. translators: %s: a filter hook of WP REST Cache.
+#: includes/legacy/class-endpoint-bridge.php:744
+#, php-format
+msgid "%s returned an entry that is not valid, so it is ignored."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache.
+#: includes/legacy/class-endpoint-bridge.php:747
+#, php-format
+msgid "%1$s from %2$s is not a valid entry, so it is ignored."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: comma separated header names.
+#: includes/legacy/class-endpoint-bridge.php:750
+#, php-format
+msgid "%1$s from %2$s: %3$s carry credentials and can never vary the cache."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: comma separated header names.
+#: includes/legacy/class-endpoint-bridge.php:753
+#, php-format
+msgid "%1$s from %2$s: %3$s are not valid request header names."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: comma separated header names, 4: number of routes, 5: maximum number of headers.
+#: includes/legacy/class-endpoint-bridge.php:756
+#, php-format
+msgid "%1$s from %2$s: %3$s left out on %4$d routes; a route varies on at most %5$d request headers besides the global ones."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: a route pattern, 4: comma separated error codes.
+#: includes/legacy/class-endpoint-bridge.php:759
+#, php-format
+msgid "%1$s from %2$s: no rule could be built for %3$s (%4$s)."
+msgstr ""
+
+#. translators: 1: an endpoint, 2: a filter hook of WP REST Cache, 3: a reason code.
+#: includes/legacy/class-endpoint-bridge.php:763
+#, php-format
+msgid "%1$s from %2$s: %3$s."
+msgstr ""
+
+#: includes/legacy/class-health.php:115
+msgid "WP REST Cache compatibility"
+msgstr ""
+
+#: includes/legacy/class-health.php:139
+msgid "Nothing of WP REST Cache needs attention"
+msgstr ""
+
+#: includes/legacy/class-health.php:140
+msgid "No constant of WP REST Cache is defined, and every finding of the import and the compatibility layer was imported or kept as it was."
+msgstr ""
+
+#: includes/legacy/class-health.php:144
+msgid "Some of what WP REST Cache left on this site needs your attention."
+msgstr ""
+
+#: includes/legacy/class-health.php:146
+msgid "These constants of WP REST Cache are defined:"
+msgstr ""
+
+#: includes/legacy/class-health.php:153
+msgid "These findings do not behave as before:"
+msgstr ""
+
+#: includes/legacy/class-health.php:162
+msgid "WP REST Cache left settings that need attention"
+msgstr ""
+
+#: includes/legacy/class-health.php:178
+msgid "Rockfire – REST API Cache: WP REST Cache"
+msgstr ""
+
+#: includes/legacy/class-health.php:181
+msgid "WP REST Cache"
+msgstr ""
+
+#: includes/legacy/class-health.php:185
+msgid "Last import"
+msgstr ""
+
+#: includes/legacy/class-health.php:189
+msgid "Constants"
+msgstr ""
+
+#: includes/legacy/class-health.php:193
+msgid "Findings"
+msgstr ""
+
+#. translators: %s: constant of WP REST Cache.
+#: includes/legacy/class-health.php:242
+#, php-format
+msgid "%s has no effect: the feature has no counterpart in this plugin."
+msgstr ""
+
+#. translators: 1: constant of WP REST Cache, 2: constant of this plugin that replaces it.
+#: includes/legacy/class-health.php:251
+#, php-format
+msgid "%1$s is ignored because %2$s is defined and wins."
+msgstr ""
+
+#. translators: 1: constant of WP REST Cache, 2: constant of this plugin that replaces it.
+#: includes/legacy/class-health.php:259
+#, php-format
+msgid "%1$s has an invalid value and is ignored. Fix its value or define %2$s instead."
+msgstr ""
+
+#. translators: 1: constant of WP REST Cache, 2: constant of this plugin that replaces it.
+#: includes/legacy/class-health.php:267
+#, php-format
+msgid "%1$s still works. Define %2$s instead."
+msgstr ""
+
+#. translators: %s: constant of this plugin that raises the maximum TTL.
+#: includes/legacy/class-health.php:274
+#, php-format
+msgid "The value is limited by the maximum TTL: raise Max TTL or %s when it is clamped."
+msgstr ""
+
+#: includes/legacy/class-health.php:307
+msgid "Inactive, with leftovers"
+msgstr ""
+
+#: includes/legacy/class-health.php:310
+msgid "Not found"
+msgstr ""
+
+#. translators: %s: result of the import, e.g. compiled or unchanged.
+#: includes/legacy/class-health.php:335
+#, php-format
+msgid "result: %s"
+msgstr ""
+
+#. translators: 1: constant of WP REST Cache, 2: its state, 3: constant of this plugin that replaces it.
+#: includes/legacy/class-health.php:359
+#, php-format
+msgid "%1$s (%2$s, replaced by %3$s)"
+msgstr ""
+
+#. translators: 1: group of findings, 2: number of findings in the group, 3: number of them that need attention.
+#: includes/legacy/class-health.php:379
+#, php-format
+msgid "%1$s: %2$d (%3$d need attention)"
+msgstr ""
+
+#: includes/legacy/class-health.php:398
+#: includes/legacy/class-import-page.php:122
+#: includes/legacy/class-import-page.php:495
+msgid "Import"
+msgstr ""
+
+#: includes/legacy/class-health.php:399
+#: includes/legacy/class-import-page.php:496
+msgid "Hooks"
+msgstr ""
+
+#: includes/legacy/class-health.php:400
+#: includes/legacy/class-import-page.php:497
+msgid "Load order"
+msgstr ""
+
+#: includes/legacy/class-health.php:401
+#: includes/legacy/class-import-page.php:498
+msgid "Endpoints"
+msgstr ""
+
+#: includes/legacy/class-health.php:402
+#: includes/legacy/class-import-page.php:499
+msgid "Classes"
+msgstr ""
+
+#: includes/legacy/class-health.php:403
+#: includes/legacy/class-import-page.php:500
+msgid "Notice"
+msgstr ""
+
+#: includes/legacy/class-health.php:417
+msgid "imported"
+msgstr ""
+
+#: includes/legacy/class-health.php:418
+msgid "kept"
+msgstr ""
+
+#: includes/legacy/class-health.php:419
+msgid "adjusted"
+msgstr ""
+
+#: includes/legacy/class-health.php:420
+msgid "skipped"
+msgstr ""
+
+#: includes/legacy/class-health.php:421
+msgid "unsupported"
+msgstr ""
+
+#: includes/legacy/class-health.php:435
+msgid "honoured"
+msgstr ""
+
+#: includes/legacy/class-health.php:436
+msgid "shadowed"
+msgstr ""
+
+#: includes/legacy/class-health.php:437
+msgid "invalid"
+msgstr ""
+
+#: includes/legacy/class-health.php:438
+msgid "no effect"
+msgstr ""
+
+#: includes/legacy/class-health.php:464
+msgid "Open the import page"
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: a constant name.
+#: includes/legacy/class-hook-findings.php:199
+#, php-format
+msgid "%1$s is hooked, so responses are not stored: a cache hit cannot apply it. Define %2$s to apply it on cache hits, or remove the callback, then flush the cache once."
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-hook-findings.php:246
+#, php-format
+msgid "%s is hooked, but a callback that depends on the request is not carried over. Turn nonce caching on under REST API Cache → Settings to cache requests that carry a nonce."
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: a constant name.
+#: includes/legacy/class-hook-findings.php:271
+#, php-format
+msgid "%1$s is hooked but not applied on cache hits; define %2$s to apply it."
+msgstr ""
+
+#: includes/legacy/class-hook-findings.php:300
+msgid "an unknown file"
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-hook-findings.php:325
+#, php-format
+msgid "%s is hooked, but the admin screens were rebuilt and the hook is never fired, so the callback never runs."
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-hook-findings.php:327
+#, php-format
+msgid "%s is hooked, but the feature it belongs to was removed and the hook is never fired, so the callback never runs."
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-hook-findings.php:329
+#, php-format
+msgid "%s is hooked, but there is no place where this plugin could fire it, so the callback never runs."
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-hook-findings.php:331
+#, php-format
+msgid "%s is hooked, but the feature it belongs to is planned for a later release, so the callback never runs."
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: a file name, 3: the list of files.
+#: includes/legacy/class-hook-findings.php:355
+#, php-format
+msgid "%1$s has callbacks in must-use files that load after %2$s, so a cache hit served early does not apply them: %3$s"
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: the list of files.
+#: includes/legacy/class-hook-findings.php:357
+#, php-format
+msgid "%1$s has callbacks in plugins, which a cache hit served early does not apply; only the fallback path does: %2$s"
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: the list of files.
+#: includes/legacy/class-hook-findings.php:359
+#, php-format
+msgid "%1$s has callbacks in a theme or in a file that cannot be found, so no cache hit applies them: %2$s"
+msgstr ""
+
+#. translators: %s: the reasons the settings could not be saved
+#: includes/legacy/class-import-cli.php:131
+#, php-format
+msgid "The settings could not be saved: %s"
+msgstr ""
+
+#. translators: 1: number of sites, 2: the sites (domain and path), separated by commas
+#: includes/legacy/class-import-cli.php:193
+#, php-format
+msgid "The import failed on %1$d site(s): %2$s."
+msgstr ""
+
+#. translators: 1: the site (domain and path), 2: exit code of the process
+#: includes/legacy/class-import-cli.php:221
+#, php-format
+msgid "[%1$s] The import ended with exit code %2$d."
+msgstr ""
+
+#. translators: %s: the site (domain and path)
+#: includes/legacy/class-import-cli.php:229
+#, php-format
+msgid "[%s] The output of the import could not be read."
+msgstr ""
+
+#. translators: 1: number of values imported, 2: number kept, 3: number adjusted, 4: number skipped, 5: number unsupported
+#: includes/legacy/class-import-cli.php:400
+#, php-format
+msgid "Dry run: nothing was saved. Would import %1$d, keep %2$d, adjust %3$d, skip %4$d; %5$d unsupported."
+msgstr ""
+
+#. translators: 1: number of values imported, 2: number kept, 3: number adjusted, 4: number skipped, 5: number unsupported
+#: includes/legacy/class-import-cli.php:403
+#, php-format
+msgid "Imported %1$d, kept %2$d, adjusted %3$d, skipped %4$d; %5$d unsupported."
+msgstr ""
+
+#: includes/legacy/class-import-cli.php:412
+msgid "No settings of WP REST Cache were found; there is nothing to import."
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:102
+msgid "WP REST Cache left settings on this site. Import them into Rockfire – REST API Cache, so that caching keeps behaving the way your site is used to."
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:105
+msgid "Import now"
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:106
+msgid "Review on the Import page"
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:133
+msgid "View report"
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:138
+#: includes/legacy/views/import.php:123
+#: includes/legacy/views/import.php:132
+msgid "Deactivate WP REST Cache"
+msgstr ""
+
+#: includes/legacy/class-import-notice.php:140
+msgid "Deactivate WP REST Cache on the network Plugins screen"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:113
+msgid "Import from WP REST Cache"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:336
+msgid "The settings of WP REST Cache could not be imported: saving the settings failed and nothing was changed."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:339
+msgid "There are no settings of WP REST Cache to import."
+msgstr ""
+
+#. translators: 1: number of imported values, 2: kept, 3: adjusted, 4: skipped, 5: unsupported.
+#: includes/legacy/class-import-page.php:344
+#, php-format
+msgid "Imported the settings of WP REST Cache: %1$d imported, %2$d kept, %3$d adjusted, %4$d skipped, %5$d unsupported."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:352
+#: includes/legacy/class-import-page.php:479
+msgid "The settings are saved; the cache configuration is rebuilt on a later request."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:355
+msgid "Some values need your attention: see the report."
+msgstr ""
+
+#. translators: 1: the summary of the failed import, 2: the reasons the settings could not be saved
+#: includes/legacy/class-import-page.php:384
+#, php-format
+msgid "%1$s Details: %2$s"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:460
+msgid "Imported"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:461
+msgid "Kept"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:462
+msgid "Adjusted"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:463
+msgid "Skipped"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:464
+msgid "Unsupported"
+msgstr ""
+
+#: includes/legacy/class-import-page.php:478
+msgid "The settings are saved and the cache configuration is up to date."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:480
+msgid "Nothing needed to change."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:481
+msgid "The settings could not be saved."
+msgstr ""
+
+#: includes/legacy/class-import-page.php:501
+msgid "Other findings"
+msgstr ""
+
+#. translators: %s: the option or constant of the original plugin that holds the cache lifetime.
+#: includes/legacy/class-importer.php:500
+#, php-format
+msgid "%s is not a valid cache lifetime, so it was not imported."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key, 3: number of seconds.
+#: includes/legacy/class-importer.php:535
+#, php-format
+msgid "%1$s imported as %2$s: %3$d seconds."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: its number of seconds, 3: a settings key, 4: the imported number of seconds.
+#: includes/legacy/class-importer.php:544
+#, php-format
+msgid "%1$s is %2$d seconds; %3$s is set to %4$d seconds, the closest value allowed."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key, 3: number of seconds.
+#: includes/legacy/class-importer.php:563
+#, php-format
+msgid "%1$s is longer than the maximum cache lifetime, so %2$s is raised to %3$d seconds."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a header name.
+#: includes/legacy/class-importer.php:595
+#, php-format
+msgid "%1$s: %2$s is not a valid request header name."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a header name.
+#: includes/legacy/class-importer.php:604
+#, php-format
+msgid "%1$s: %2$s carries credentials and can never vary the cache."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: the reason.
+#: includes/legacy/class-importer.php:629
+#, php-format
+msgid "%1$s was not imported: %2$s"
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key, 3: comma separated header names.
+#: includes/legacy/class-importer.php:637
+#, php-format
+msgid "%1$s imported as %2$s: %3$s."
+msgstr ""
+
+#. translators: 1: maximum number of headers, 2: comma separated header names.
+#: includes/legacy/class-importer.php:640
+#, php-format
+msgid "At most %1$d headers vary every route, so %2$s were left out."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: a query parameter name.
+#: includes/legacy/class-importer.php:680
+#, php-format
+msgid "%1$s: %2$s is not a valid query parameter name."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: a settings key, 3: comma separated query parameter names.
+#: includes/legacy/class-importer.php:703
+#, php-format
+msgid "%1$s imported as %2$s: %3$s. A parameter is ignored only on routes that do not register it."
+msgstr ""
+
+#. translators: 1: maximum number of parameters, 2: comma separated query parameter names.
+#: includes/legacy/class-importer.php:706
+#, php-format
+msgid "At most %1$d parameters are kept, so %2$s were left out."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key, 3: the constant that defines it.
+#: includes/legacy/class-importer.php:745
+#, php-format
+msgid "%1$s is not imported: %2$s is defined by %3$s."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key.
+#: includes/legacy/class-importer.php:748
+#, php-format
+msgid "%1$s is already imported into %2$s."
+msgstr ""
+
+#. translators: 1: the option or constant of the original plugin, 2: a settings key.
+#: includes/legacy/class-importer.php:751
+#, php-format
+msgid "%1$s is not imported: %2$s keeps the value saved in this plugin."
+msgstr ""
+
+#. translators: %s: the option of the original plugin.
+#: includes/legacy/class-importer.php:773
+#, php-format
+msgid "%s is not a list, so it was not imported."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes that are now cached, 3: number of routes that were cached by default already.
+#: includes/legacy/class-importer.php:979
+#, php-format
+msgid "%1$s: %2$d routes cached, %3$d already cached by default."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes.
+#: includes/legacy/class-importer.php:1021
+#, php-format
+msgid "%1$s: %2$d route excluded from caching."
+msgid_plural "%1$s: %2$d routes excluded from caching."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes.
+#: includes/legacy/class-importer.php:1034
+#, php-format
+msgid "%1$s: %2$d route is not excluded, because WP REST Cache did not allow it either."
+msgid_plural "%1$s: %2$d routes are not excluded, because WP REST Cache did not allow them either."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes, 3: comma separated header names.
+#: includes/legacy/class-importer.php:1072
+#, php-format
+msgid "%1$s: %2$d route varies by %3$s."
+msgid_plural "%1$s: %2$d routes vary by %3$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes, 3: a constant name.
+#: includes/legacy/class-importer.php:1100
+#, php-format
+msgid "%1$s: %2$d route keeps the rule defined by %3$s."
+msgid_plural "%1$s: %2$d routes keep the rule defined by %3$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes.
+#: includes/legacy/class-importer.php:1115
+#, php-format
+msgid "%1$s: %2$d route keeps the rule saved in this plugin."
+msgid_plural "%1$s: %2$d routes keep the rule saved in this plugin."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, such as "posts in wp/v2", 2: number of routes.
+#: includes/legacy/class-importer.php:1129
+#, php-format
+msgid "%1$s: %2$d route is already imported."
+msgid_plural "%1$s: %2$d routes are already imported."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: an endpoint of the original plugin, 2: comma separated route patterns.
+#: includes/legacy/class-importer.php:1154
+#, php-format
+msgid "%1$s is a concrete path; it is imported for the whole route %2$s."
+msgstr ""
+
+#. translators: %s: an endpoint of the original plugin.
+#: includes/legacy/class-importer.php:1158
+#, php-format
+msgid "%s is a pattern; only registered routes can be imported."
+msgstr ""
+
+#. translators: %s: an endpoint of the original plugin.
+#: includes/legacy/class-importer.php:1162
+#, php-format
+msgid "%s matches no registered route."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, 2: comma separated route patterns.
+#: includes/legacy/class-importer.php:1166
+#, php-format
+msgid "%1$s: %2$s are never cached."
+msgstr ""
+
+#. translators: %s: an entry of an option of the original plugin.
+#: includes/legacy/class-importer.php:1170
+#, php-format
+msgid "%s is not a valid entry."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, 2: comma separated header names.
+#: includes/legacy/class-importer.php:1174
+#, php-format
+msgid "%1$s: %2$s carry credentials and can never vary the cache."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, 2: comma separated header names.
+#: includes/legacy/class-importer.php:1178
+#, php-format
+msgid "%1$s: %2$s are not valid request header names."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, 2: comma separated header names, 3: number of routes, 4: maximum number of headers.
+#: includes/legacy/class-importer.php:1182
+#, php-format
+msgid "%1$s: %2$s left out on %3$d routes; a route varies on at most %4$d request headers besides the global ones."
+msgstr ""
+
+#. translators: 1: an endpoint of the original plugin, 2: a route pattern, 3: comma separated error codes.
+#: includes/legacy/class-importer.php:1186
+#, php-format
+msgid "%1$s: no rule could be built for %2$s (%3$s)."
+msgstr ""
+
+#. translators: 1: an endpoint, such as "posts", 2: a REST namespace, such as "wp/v2".
+#: includes/legacy/class-importer.php:1297
+#, php-format
+msgid "%1$s in %2$s"
+msgstr ""
+
+#. translators: %s: the option of the original plugin.
+#: includes/legacy/class-importer.php:1363
+#, php-format
+msgid "%s: GET requests are cached, as before."
+msgstr ""
+
+#. translators: %s: the option of the original plugin.
+#: includes/legacy/class-importer.php:1366
+#, php-format
+msgid "%s allows no request method, but GET requests are cached."
+msgstr ""
+
+#. translators: %s: the option of the original plugin.
+#: includes/legacy/class-importer.php:1369
+#, php-format
+msgid "%s does not allow GET requests, but GET requests are cached."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: comma separated request methods.
+#: includes/legacy/class-importer.php:1377
+#, php-format
+msgid "%1$s: only GET requests are cached; %2$s requests are not, because no imported route takes them."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: comma separated request methods, 3: number of routes.
+#: includes/legacy/class-importer.php:1386
+#, php-format
+msgid "%1$s: %2$s requests are cached on %3$d imported route."
+msgid_plural "%1$s: %2$s requests are cached on %3$d imported routes."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: the option of the original plugin, 2: comma separated request methods.
+#: includes/legacy/class-importer.php:1406
+#, php-format
+msgid "%1$s: %2$s requests are not cached, because no imported route takes them."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: comma separated request methods.
+#: includes/legacy/class-importer.php:1417
+#, php-format
+msgid "%1$s: %2$s requests can not be cached."
+msgstr ""
+
+#. translators: 1: the option of the original plugin, 2: comma separated request methods, 3: number of routes, 4: a constant name.
+#: includes/legacy/class-importer.php:1428
+#, php-format
+msgid "%1$s: %2$s requests are not cached on %3$d route; a core route is only cached for GET, and a route keeps the rule it is cached with by default, the rule saved in this plugin or the rule defined by %4$s."
+msgid_plural "%1$s: %2$s requests are not cached on %3$d routes; a core route is only cached for GET, and a route keeps the rule it is cached with by default, the rule saved in this plugin or the rule defined by %4$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: the option or constant of the original plugin.
+#: includes/legacy/class-importer.php:1451
+#, php-format
+msgid "%s: expired caches are not regenerated in the background; an expired entry is stored again by the next request for it."
+msgstr ""
+
+#. translators: %s: the option or constant of the original plugin.
+#: includes/legacy/class-importer.php:1453
+#, php-format
+msgid "%s: the store is chosen automatically and works with any persistent object cache; pick one under Store in the settings to override it."
+msgstr ""
+
+#. translators: %s: the option of the original plugin.
+#: includes/legacy/class-importer.php:1470
+#, php-format
+msgid "%s: hits are counted by sampling; set Hit sampling to 0 in the settings to stop counting them."
+msgstr ""
+
+#: includes/legacy/class-importer.php:1498
+msgid "Some requests that WP REST Cache cached bypass the cache here: requests with a query parameter the route does not register, with the search parameter, with credentials, or with a method the route does not cache."
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: a constant name.
+#: includes/legacy/class-importer.php:1529
+#, php-format
+msgid "%1$s keeps working, but is applied on cache hits only with %2$s."
+msgstr ""
+
+#. translators: %s: a hook of the original plugin.
+#: includes/legacy/class-importer.php:1532
+#, php-format
+msgid "%s keeps working."
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: the hook that replaces it.
+#: includes/legacy/class-importer.php:1535
+#, php-format
+msgid "%1$s keeps working; replace it with %2$s."
+msgstr ""
+
+#. translators: %s: a hook name.
+#: includes/legacy/class-importer.php:1543
+#, php-format
+msgid "%s is not a hook of WP REST Cache that this plugin knows, so it never runs."
+msgstr ""
+
+#. translators: 1: a hook of the original plugin, 2: why it is not supported.
+#: includes/legacy/class-importer.php:1547
+#, php-format
+msgid "%1$s never runs: %2$s"
+msgstr ""
+
+#. translators: 1: called method of WP REST Cache, as Class::method. 2: why the call had no effect, a sentence in English.
+#: includes/legacy/class-shim-notice.php:124
+#, php-format
+msgid "A call to %1$s had no effect: %2$s"
+msgstr ""
+
+#: includes/legacy/shims/caching/class-caching.php:168
+msgid "Invalid strictness."
+msgstr ""
+
+#: includes/legacy/views/findings.php:18
+msgid "Setting"
+msgstr ""
+
+#: includes/legacy/views/import.php:28
+msgid "Import report"
+msgstr ""
+
+#. translators: %s: date and time of the import.
+#: includes/legacy/views/import.php:33
+#, php-format
+msgid "The settings of WP REST Cache were imported on %s."
+msgstr ""
+
+#: includes/legacy/views/import.php:39
+msgid "Result:"
+msgstr ""
+
+#. translators: %d: number of findings that are not listed.
+#: includes/legacy/views/import.php:55
+#: includes/legacy/views/import.php:111
+#, php-format
+msgid "%d more finding is not listed."
+msgid_plural "%d more findings are not listed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/legacy/views/import.php:66
+msgid "Run the import again"
+msgstr ""
+
+#: includes/legacy/views/import.php:69
+msgid "Values you changed in this plugin since are kept; only values that still hold their default are imported again."
+msgstr ""
+
+#: includes/legacy/views/import.php:73
+msgid "Preview"
+msgstr ""
+
+#: includes/legacy/views/import.php:75
+msgid "No settings of WP REST Cache were found on this site, so there is nothing to import."
+msgstr ""
+
+#: includes/legacy/views/import.php:77
+msgid "This is what importing the settings of WP REST Cache would do. Nothing is changed until you import."
+msgstr ""
+
+#: includes/legacy/views/import.php:88
+msgid "Import settings"
+msgstr ""
+
+#: includes/legacy/views/import.php:91
+msgid "Values you already changed in this plugin are kept: only values that still hold their default are imported."
+msgstr ""
+
+#: includes/legacy/views/import.php:124
+msgid "Caching stays paused while WP REST Cache is active. Deactivate it when you are done here; its settings stay in the database."
+msgstr ""
+
+#: includes/legacy/views/import.php:127
+msgid "WP REST Cache is active on the whole network, so it is deactivated on the network Plugins screen."
+msgstr ""
+
+#: includes/legacy/views/import.php:128
+msgid "Go to the network Plugins screen"
+msgstr ""
+
+#: includes/services/class-cache-service.php:204
+msgid "Enter at least one tag."
+msgstr ""
+
+#. translators: %d: maximum number of tags
+#: includes/services/class-cache-service.php:210
+#, php-format
+msgid "Enter at most %d tags."
+msgstr ""
+
+#: includes/services/class-cache-service.php:217
+msgid "Route tags cannot be flushed here; flush the route instead."
+msgstr ""
+
+#. translators: %s: the rejected tag
+#: includes/services/class-cache-service.php:224
+#, php-format
+msgid "\"%s\" is not a valid tag. Tags look like prefix:value."
+msgstr ""
+
+#: includes/services/class-cache-service.php:242
+msgid "Enter a full http(s) URL of a REST route on this site."
+msgstr ""
+
+#: includes/services/class-cache-service.php:277
+msgid "Enter a route."
+msgstr ""
+
+#: includes/services/class-route-service.php:281
+#: includes/services/class-route-service.php:286
+msgid "This route is not registered."
+msgstr ""
+
+#: includes/services/class-route-service.php:289
+#: includes/services/class-route-service.php:340
+msgid "This route can not be changed."
+msgstr ""
+
+#: includes/services/class-route-service.php:294
+msgid "A registered route can only use registered matching."
+msgstr ""
+
+#: includes/services/class-route-service.php:379
+msgid "Unknown status."
+msgstr ""
+
+#: includes/services/class-route-service.php:852
+msgid "The changes could not be saved to the database."
+msgstr ""
+
+#: includes/services/class-route-service.php:858
+msgid "The rules could not be saved."
+msgstr ""
+
+#: includes/services/class-settings-service.php:70
+msgid "Default TTL"
+msgstr ""
+
+#: includes/services/class-settings-service.php:71
+msgid "How long a cached response stays valid when a route sets no TTL of its own."
+msgstr ""
+
+#: includes/services/class-settings-service.php:79
+msgid "Maximum TTL"
+msgstr ""
+
+#: includes/services/class-settings-service.php:80
+msgid "The longest TTL any route can have."
+msgstr ""
+
+#: includes/services/class-settings-service.php:89
+msgid "The number of active cache entries kept; the least recently used ones are evicted above it. Between two maintenance runs the cache may hold up to 1.5 times this number."
+msgstr ""
+
+#: includes/services/class-settings-service.php:96
+msgid "Maximum response size"
+msgstr ""
+
+#: includes/services/class-settings-service.php:97
+msgid "Responses larger than this are not cached. With the database store, the active entries can take up to about 1.5 × Maximum entries × this size of database space; flushed entries keep their space until the hourly maintenance deletes them."
+msgstr ""
+
+#: includes/services/class-settings-service.php:100
+msgid "KB"
+msgstr ""
+
+#: includes/services/class-settings-service.php:105
+msgid "Maximum query parameters"
+msgstr ""
+
+#: includes/services/class-settings-service.php:106
+msgid "Requests with more query parameters are not cached."
+msgstr ""
+
+#: includes/services/class-settings-service.php:113
+msgid "Hit sampling"
+msgstr ""
+
+#: includes/services/class-settings-service.php:114
+msgid "Record one in this many cache hits in the hit counter. 0 turns hit counting off."
+msgstr ""
+
+#: includes/services/class-settings-service.php:122
+msgid "Where cached responses are stored. Automatic uses the object cache when a persistent one is available."
+msgstr ""
+
+#: includes/services/class-settings-service.php:128
+msgid "Ignored query parameters"
+msgstr ""
+
+#. translators: %d: the number of parameters a list can hold.
+#: includes/services/class-settings-service.php:131
+#, php-format
+msgid "Query parameters that never change the cache key on any route, such as utm_source and fbclid. One per line, at most %d. A parameter a route registers is never ignored on that route."
+msgstr ""
+
+#: includes/services/class-settings-service.php:140
+msgid "Vary request headers"
+msgstr ""
+
+#. translators: %d: the number of headers a route can vary by.
+#: includes/services/class-settings-service.php:143
+#, php-format
+msgid "Request headers that vary the cache key on every route, such as Accept-Language. One per line. At most %d headers together with each route's own; Authorization, Cookie and similar credential headers are not allowed."
+msgstr ""
+
+#: includes/services/class-settings-service.php:152
+msgid "Cache requests with a REST nonce"
+msgstr ""
+
+#: includes/services/class-settings-service.php:153
+msgid "Logged-out requests that carry a REST nonce (the X-WP-Nonce header or the _wpnonce parameter), as wp.apiFetch and WooCommerce Blocks send them, are cached. The nonce is never checked on a cache hit, and any login still bypasses the cache."
+msgstr ""
+
+#: includes/services/class-settings-service.php:169
+msgid "Automatic"
+msgstr ""
+
+#. translators: 1: setting label, 2: the reason the value was not accepted.
+#: includes/services/class-settings-service.php:242
+#: includes/services/class-settings-service.php:266
+#, php-format
+msgid "%1$s: %2$s The previous value was kept."
+msgstr ""
+
+#. translators: 1: setting label, 2: the submitted value
+#: includes/services/class-settings-service.php:249
+#, php-format
+msgid "%1$s: \"%2$s\" is not a valid value; the previous value was kept."
+msgstr ""
+
+#. translators: 1: setting label, 2: the minimum that was saved
+#: includes/services/class-settings-service.php:288
+#, php-format
+msgid "%1$s was raised to the minimum of %2$s."
+msgstr ""
+
+#. translators: 1: setting label, 2: the maximum that was saved
+#: includes/services/class-settings-service.php:290
+#, php-format
+msgid "%1$s was lowered to the maximum of %2$s."
+msgstr ""

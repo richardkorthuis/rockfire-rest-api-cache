@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+	bootstrap="tests/bootstrap-woocommerce.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	verbose="true"
+>
+	<testsuites>
+		<testsuite name="rockfire-rest-api-cache-woocommerce">
+			<directory suffix=".php">./tests/woocommerce/</directory>
+			<exclude>./tests/woocommerce/support</exclude>
+			<exclude>./tests/woocommerce/admin</exclude>
+		</testsuite>
+	</testsuites>
+
+	<coverage>
+		<include>
+			<directory suffix=".php">./includes</directory>
+			<directory suffix=".php">./admin</directory>
+		</include>
+	</coverage>
+</phpunit>

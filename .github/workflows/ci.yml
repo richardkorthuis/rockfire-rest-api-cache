@@ -1,0 +1,321 @@
+name: CI
+
+# In a public repository every run uses the full PHPUnit matrix (Actions are free there). In a private one,
+# pull requests and pushes to main run a slim job set and the full matrix runs on demand (workflow_dispatch,
+# or a pull request with the `full-ci` label). The deploy workflow calls this one before a release.
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    types: [ opened, synchronize, reopened, labeled ]
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  # A run for an added label other than `full-ci` does nothing: its own group, so it never cancels a real run.
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}${{ github.event.action == 'labeled' && github.event.label.name != 'full-ci' && format('-label-{0}', github.run_id) || '' }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # The full matrix on every run when the repository is public.
+  FULL_CI_ALWAYS: ${{ !github.event.repository.private }}
+
+jobs:
+  setup:
+    name: Choose the jobs
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.pick.outputs.run }}
+      phpunit: ${{ steps.pick.outputs.phpunit }}
+    steps:
+      - name: Pick the PHPUnit matrix
+        id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ github.event.action }}
+          ADDED_LABEL: ${{ github.event.label.name }}
+          HAS_FULL_CI_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'full-ci') }}
+        run: |
+          # Adding any other label to a pull request needs no CI run.
+          if [ "$ACTION" = "labeled" ] && [ "$ADDED_LABEL" != "full-ci" ]; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$FULL_CI_ALWAYS" = "true" ] || [ "$EVENT" = "workflow_dispatch" ] || [ "$HAS_FULL_CI_LABEL" = "true" ]; then
+            echo 'Full matrix.'
+            echo 'phpunit={"include":[{"php":"8.1","wp":"6.6","coverage":false},{"php":"8.1","wp":"latest","coverage":false},{"php":"8.2","wp":"latest","coverage":false},{"php":"8.3","wp":"latest","coverage":false},{"php":"8.4","wp":"latest","coverage":true}]}' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Slim matrix.'
+            echo 'phpunit={"include":[{"php":"8.1","wp":"6.6","coverage":false},{"php":"8.4","wp":"latest","coverage":true}]}' >> "$GITHUB_OUTPUT"
+          fi
+
+  lint:
+    name: Lint (PHPCS, PHPStan, compliance, POT)
+    needs: setup
+    if: needs.setup.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          tools: composer
+          extensions: zip
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies (WP-CLI and its i18n command are pinned by composer.lock)
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Lint
+        run: composer lint
+
+  phpunit:
+    name: PHPUnit (PHP ${{ matrix.php }}, WP ${{ matrix.wp }}, single site + multisite${{ matrix.coverage && ', coverage' || '' }})
+    needs: setup
+    if: needs.setup.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON( needs.setup.outputs.phpunit ) }}
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: ${{ matrix.coverage && 'pcov' || 'none' }}
+          tools: composer
+          extensions: mysqli, zip
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Create the multisite test database
+        run: mysql --host=127.0.0.1 --user=root --password=root --execute='CREATE DATABASE IF NOT EXISTS wordpress_test_ms'
+
+      - name: Install WordPress test suite (single site)
+        run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 ${{ matrix.wp }} true
+
+      - name: Install WordPress test suite (multisite)
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-ms
+        run: bash bin/install-wp-tests.sh wordpress_test_ms root root 127.0.0.1 ${{ matrix.wp }} true
+
+      - name: Run PHPUnit (single site)
+        if: ${{ ! matrix.coverage }}
+        run: composer test
+
+      - name: Run PHPUnit (multisite)
+        if: ${{ ! matrix.coverage }}
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-ms
+        run: composer test-multisite
+
+      - name: Run PHPUnit with coverage (single site)
+        if: ${{ matrix.coverage }}
+        run: |
+          mkdir -p coverage
+          vendor/bin/phpunit --coverage-php=coverage/single.cov
+
+      - name: Run PHPUnit with coverage (multisite)
+        if: ${{ matrix.coverage }}
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-ms
+        run: vendor/bin/phpunit -c phpunit-multisite.xml.dist --coverage-php=coverage/multisite.cov
+
+      - name: Merge the coverage reports
+        if: ${{ matrix.coverage }}
+        run: |
+          vendor/bin/phpcov merge --clover=coverage/clover.xml --text=php://stdout coverage/
+          test -s coverage/clover.xml || { echo 'phpcov did not write coverage/clover.xml' >&2; exit 1; }
+
+      - name: Check the line coverage of the engine directories (>= 80%)
+        if: ${{ matrix.coverage }}
+        run: php bin/check-coverage.php coverage/clover.xml 80 includes/config includes/request includes/serving includes/storage includes/schema includes/install
+
+  woocommerce:
+    name: PHPUnit WooCommerce (PHP 8.4, WP latest, WC 11.3.1, HPOS off + on, admin HPOS off)
+    needs: setup
+    # Skipped on pushes in a private repository only; a public repository runs it on every push, also before a release.
+    if: needs.setup.outputs.run == 'true' && ( github.event_name != 'push' || !github.event.repository.private )
+    runs-on: ubuntu-latest
+    env:
+      # WC_VERSION, the php-stubs/woocommerce-stubs constraint in composer.json and the `WC tested up to` header move together.
+      WC_VERSION: '11.3.1'
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test_wc
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer
+          extensions: mysqli, zip
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Install WordPress latest and WooCommerce with the test suite
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-wc
+          WP_CORE_DIR: /tmp/wordpress-wc/
+        run: bash bin/install-wp-tests.sh wordpress_test_wc root root 127.0.0.1 latest true "$WC_VERSION"
+
+      - name: Run PHPUnit WooCommerce (HPOS off)
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-wc
+        run: composer test-woocommerce
+
+      - name: Run PHPUnit WooCommerce (HPOS on)
+        if: ${{ !cancelled() }}
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-wc
+        run: composer test-woocommerce-hpos
+
+      - name: Run PHPUnit WooCommerce admin context (HPOS off)
+        if: ${{ !cancelled() }}
+        env:
+          WP_TESTS_DIR: /tmp/wordpress-tests-lib-wc
+        run: composer test-woocommerce-admin
+
+  plugin-check:
+    name: Plugin Check
+    needs: [ setup, lint ]
+    if: needs.setup.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          tools: composer
+          extensions: zip
+
+      - name: Build the plugin zip
+        run: composer build
+
+      - name: Unzip the build
+        run: |
+          mkdir -p build/unzipped
+          unzip -q build/rockfire-rest-api-cache.zip -d build/unzipped
+
+      - name: Check zip contents match git archive
+        run: |
+          # Hidden top-level paths never ship (bin/lib/distignore.php), whether or not they are export-ignored.
+          git archive HEAD | tar -t | grep -v -e '/$' -e '^\.' | sort > build/archive-files.txt
+          (cd build/unzipped/rockfire-rest-api-cache && find . -type f | sed 's|^\./||' | sort) > build/zip-files.txt
+          diff build/archive-files.txt build/zip-files.txt
+
+      - name: Run Plugin Check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: build/unzipped/rockfire-rest-api-cache
+          strict: true
+
+  activation:
+    name: Clean-site activation (WP 6.6, PHP 8.1, WP_DEBUG)
+    needs: [ setup, lint ]
+    if: needs.setup.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          extensions: mysqli, zip
+
+      - name: Build the plugin zip
+        run: php bin/build-zip.php
+
+      # GitHub release downloads sometimes answer 504 for minutes at a time: keep the checksummed WP-CLI phar the
+      # script downloads in the Actions cache, keyed on the version the script pins.
+      - name: Read the pinned WP-CLI version
+        id: wp-cli
+        run: echo "version=$(sed -n 's/^WP_CLI_VERSION=//p' bin/check-activation.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the WP-CLI phar
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/rfrac-wp-cli
+          key: wp-cli-phar-${{ steps.wp-cli.outputs.version }}
+
+      - name: Install, activate, serve, deactivate and uninstall the zip on a fresh site
+        env:
+          WP_VERSION: '6.6'
+          DB_HOST: 127.0.0.1
+        run: |
+          mkdir -p ~/.cache/rfrac-wp-cli
+          WP_CLI="$HOME/.cache/rfrac-wp-cli/wp-cli.phar" bash bin/check-activation.sh build/rockfire-rest-api-cache.zip /tmp/release-check
+
+      - name: Upload the logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: activation-logs
+          path: |
+            /tmp/release-check/*.log
+            /tmp/release-check/*.headers

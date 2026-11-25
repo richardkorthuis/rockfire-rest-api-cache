@@ -1,0 +1,68 @@
+/**
+ * Rockfire REST API Cache – admin styles.
+ *
+ * Loaded only on the plugin's own admin pages.
+ */
+
+.rfrac-wrap .rfrac-section {
+	margin-top: 24px;
+}
+
+.rfrac-wrap .rfrac-help {
+	color: #646970;
+	font-style: italic;
+}
+
+.rfrac-wrap code.rfrac-path {
+	word-break: break-all;
+}
+
+.rfrac-badge {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 10px;
+	background: #dcdcde;
+	color: #1d2327;
+	font-size: 12px;
+	line-height: 18px;
+	white-space: nowrap;
+}
+
+.rfrac-badge--success {
+	background: #d1e7dd;
+	color: #0a3622;
+}
+
+.rfrac-badge--warning {
+	background: #fcf0d1;
+	color: #614a19;
+}
+
+.rfrac-badge--error {
+	background: #f8d7da;
+	color: #58151c;
+}
+
+.rfrac-badge--muted {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.rfrac-wrap pre.rfrac-pre {
+	max-height: 480px;
+	overflow: auto;
+	padding: 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.rfrac-wrap .rfrac-inline-form {
+	display: inline-block;
+	margin: 0 8px 8px 0;
+}
+
+.rfrac-wrap [hidden] {
+	display: none !important;
+}

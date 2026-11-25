@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Rockfire REST API Cache" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+    <description>A custom set of rules to check the Rockfire – REST API Cache plugin.</description>
+
+    <file>.</file>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="ps"/>
+
+    <!-- Include the WordPress-Extra standard. -->
+    <rule ref="WordPress-Extra">
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
+    </rule>
+
+    <!-- Let's also check that everything is properly documented. -->
+    <rule ref="WordPress-Docs"/>
+
+    <!-- Add in some extra rules from other standards. -->
+    <!--<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>-->
+    <rule ref="Generic.Commenting.Todo"/>
+
+    <!-- Check for PHP cross-version compatibility. -->
+    <!--
+    To enable this, the PHPCompatibilityWP standard needs
+    to be installed.
+    See the readme for installation instructions:
+    https://github.com/PHPCompatibility/PHPCompatibilityWP
+    For more information, also see:
+    https://github.com/PHPCompatibility/PHPCompatibility
+    -->
+    <config name="testVersion" value="8.1-"/>
+    <rule ref="PHPCompatibilityWP"/>
+
+    <!--
+    To get the optimal benefits of using WPCS, we should add a couple of
+    custom properties.
+    Adjust the values of these properties to fit our needs.
+
+    For information on additional custom properties available, check out
+    the wiki:
+    https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
+    -->
+    <config name="minimum_wp_version" value="6.6"/>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="rockfire-rest-api-cache"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="Rockfire\Rest_Api_Cache"/>
+                <element value="rfrac"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!--
+    The legacy layer registers hooks, namespaces and classes that carry the identifiers of the
+    original plugin, so they cannot carry this plugin's prefix.
+    -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound">
+        <exclude-pattern>*/includes/legacy/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound">
+        <exclude-pattern>*/includes/legacy/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound">
+        <exclude-pattern>*/includes/legacy/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.ValidHookName">
+        <properties>
+            <property name="additionalWordDelimiters" value="/"/>
+        </properties>
+    </rule>
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/bin/*</exclude-pattern>
+    <exclude-pattern>*/coverage/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+
+</ruleset>

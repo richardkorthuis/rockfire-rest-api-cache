@@ -1,0 +1,89 @@
+name: Deploy
+
+# A version tag (1.2.3) on a commit of main releases that version: CI runs on the tag first, then the plugin zip is
+# built with bin/build-zip.php and committed to the WordPress.org SVN repository (trunk, tags/<version> and the
+# assets of .wordpress-org), and a GitHub release with the zip is created.
+#
+# Needs the secrets SVN_USERNAME and SVN_PASSWORD (the SVN password of the WordPress.org profile) in the
+# `wordpress-org` environment. Runs only in the public repository.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI
+    if: ${{ !github.event.repository.private }}
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy to WordPress.org
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: wordpress-org
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ github.ref_name }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check that the tag is on main
+        run: |
+          git fetch --quiet origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::Tag $VERSION is not on main."
+            exit 1
+          fi
+
+      - name: Check that the tag matches the plugin version
+        run: |
+          header="$(sed -nE 's/^ \* Version:[[:space:]]+([^[:space:]]+).*/\1/p' rockfire-rest-api-cache.php)"
+          constant="$(sed -nE "s/^define\( 'RFRAC_VERSION', '([^']+)' \);/\1/p" rockfire-rest-api-cache.php)"
+          stable="$(sed -nE 's/^Stable tag:[[:space:]]+([^[:space:]]+).*/\1/p' readme.txt)"
+          echo "Tag $VERSION, header $header, RFRAC_VERSION $constant, Stable tag $stable"
+          if [ "$header" != "$VERSION" ] || [ "$constant" != "$VERSION" ] || [ "$stable" != "$VERSION" ]; then
+            echo "::error::The tag, the Version header, RFRAC_VERSION and the readme Stable tag must all be $VERSION."
+            exit 1
+          fi
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          tools: none
+          extensions: zip
+
+      - name: Build the zip
+        run: |
+          php bin/build-zip.php
+          mkdir -p build/dist
+          unzip -q build/rockfire-rest-api-cache.zip -d build/dist
+
+      - name: Deploy to WordPress.org
+        # 10up/action-wordpress-plugin-deploy 2.3.0
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: rockfire-rest-api-cache
+          VERSION: ${{ env.VERSION }}
+          BUILD_DIR: build/dist/rockfire-rest-api-cache
+          ASSETS_DIR: .wordpress-org
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$VERSION" build/rockfire-rest-api-cache.zip --verify-tag --title "$VERSION" --generate-notes

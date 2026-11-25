@@ -1,0 +1,90 @@
+{
+	"name": "rockfire/rest-api-cache",
+	"description": "Rockfire - REST API Cache: caches WordPress REST API responses.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-only",
+	"require": {
+		"php": ">=8.1"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpstan/phpstan": "^2.1",
+		"szepeviktor/phpstan-wordpress": "^2.0",
+		"phpstan/extension-installer": "^1.4",
+		"php-stubs/wp-cli-stubs": "^2.11",
+		"php-stubs/woocommerce-stubs": "~11.3.0",
+		"phpunit/phpunit": "^9.6",
+		"yoast/phpunit-polyfills": "^2.0",
+		"phpunit/phpcov": "^8.2",
+		"wp-cli/wp-cli-bundle": "^2.11"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		},
+		"platform": {
+			"php": "8.1.0"
+		},
+		"process-timeout": 0
+	},
+	"scripts": {
+		"phpcs": "phpcs",
+		"phpcbf": "phpcbf",
+		"phpstan": "phpstan analyse --memory-limit=2G",
+		"compliance": "@php bin/check-compliance.php",
+		"check-readme": "@php bin/check-readme.php",
+		"lint": [
+			"@phpcs",
+			"@phpstan",
+			"@compliance",
+			"@check-readme",
+			"@check-pot"
+		],
+		"build": "@php bin/build-zip.php",
+		"make-pot": "@php bin/make-pot.php",
+		"check-pot": "@php bin/make-pot.php --check",
+		"install-wp-tests": "bash bin/install-wp-tests.sh",
+		"install-wp-tests-multisite": [
+			"@putenv WP_TESTS_DIR=/tmp/wordpress-tests-lib-ms",
+			"bash bin/install-wp-tests.sh"
+		],
+		"install-wp-tests-woocommerce": [
+			"@putenv WP_TESTS_DIR=/tmp/wordpress-tests-lib-wc",
+			"@putenv WP_CORE_DIR=/tmp/wordpress-wc/",
+			"bash bin/install-wp-tests.sh"
+		],
+		"test": "phpunit",
+		"test-multisite": "phpunit -c phpunit-multisite.xml.dist",
+		"test-woocommerce": [
+			"@putenv RFRAC_WC_HPOS=0",
+			"phpunit -c phpunit-woocommerce.xml.dist"
+		],
+		"test-woocommerce-hpos": [
+			"@putenv RFRAC_WC_HPOS=1",
+			"phpunit -c phpunit-woocommerce.xml.dist"
+		],
+		"test-woocommerce-admin": [
+			"@putenv RFRAC_WC_HPOS=0",
+			"phpunit -c phpunit-woocommerce-admin.xml.dist"
+		],
+		"test-all": [
+			"@test",
+			"@test-multisite"
+		],
+		"coverage": [
+			"@php -r \"if (!is_dir('coverage')) mkdir('coverage', 0755, true);\"",
+			"phpunit --coverage-php=coverage/single.cov",
+			"phpunit -c phpunit-multisite.xml.dist --coverage-php=coverage/multisite.cov",
+			"phpcov merge --html=coverage/html coverage/"
+		],
+		"coverage-text": [
+			"@php -r \"if (!is_dir('coverage')) mkdir('coverage', 0755, true);\"",
+			"phpunit --coverage-php=coverage/single.cov",
+			"phpunit -c phpunit-multisite.xml.dist --coverage-php=coverage/multisite.cov",
+			"phpcov merge --text=php://stdout coverage/"
+		]
+	}
+}
